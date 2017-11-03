@@ -5,7 +5,7 @@ app = Flask(__name__)
 # API root
 @app.route('/')
 def api_root():
-    data = {'welcome': 'xTreme Burger'}
+    data = {'welcome': 'xTreme Burger API'}
     return Response(json.dumps(data))
 
 # Customer database access
