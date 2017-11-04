@@ -1,4 +1,5 @@
 from flask import Flask, url_for, json, Response
+from mysql_db import MySQL_Database
 
 app = Flask(__name__)
 
@@ -9,10 +10,21 @@ def api_root():
     return Response(json.dumps(data))
 
 # Customer database access
-@app.route('/customer/<username>')
+@app.route('/customer/<username>', methods=["GET"])
 def customer_by_username(username):
-    data = {'customer' : 'Julian'}
-    return Response(json.dumps(data))
+
+    # Setup database connection
+    db = MySQL_Database()
+
+    # Query Customer table by username and pull all information if available
+    customer_information = db.query('SELECT * FROM customer WHERE customer.Username = %s', [username])
+
+    len(customer_information)
+
+    if len(customer_information) > 0:
+        return Response(json.dumps(customer_information))
+    else:
+        return Response(json.dumps({"customer" : "void"}))
 
 if __name__ == '__main__':
     app.run()

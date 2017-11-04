@@ -1,10 +1,25 @@
 import MySQLdb
 import os
 
-DB_HOST = os.environ['DB_HOST']
-DB_USER = os.environ['DB_USER']
-DB_PASSWORD = os.environ['DB_PASSWORD']
-DB_NAME = os.environ['DB_NAME']
+if os.environ['ENV_TYPE'] == 'LOCAL':
+    import configparser
+
+    dir = os.path.dirname(__file__)
+    filename = os.path.join(dir, 'config.ini')
+    config = configparser.ConfigParser()
+    config.read(filename)
+
+    local = config['LOCAL']
+    DB_HOST = local['DB_HOST']
+    DB_USER = local['DB_USER']
+    DB_PASSWORD = local['DB_PASSWORD']
+    DB_NAME = local['DB_NAME']
+
+else:
+    DB_HOST = os.environ['DB_HOST']
+    DB_USER = os.environ['DB_USER']
+    DB_PASSWORD = os.environ['DB_PASSWORD']
+    DB_NAME = os.environ['DB_NAME']
 
 
 class MySQL_Database:
