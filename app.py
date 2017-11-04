@@ -35,7 +35,7 @@ def customer_by_username(username):
     len(customer_information)
 
     if len(customer_information) > 0:
-        return Response(json.dumps(customer_information))
+        return Response(json.dumps(customer_information[0]))
     else:
         return Response(json.dumps({"customer": "void"}))
 
