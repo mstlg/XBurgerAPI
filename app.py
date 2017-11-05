@@ -34,7 +34,7 @@ def customer_by_username(username):
     if len(customer_information) > 0:
         return Response(json.dumps(customer_information[0]))
     else:
-        return Response(json.dumps({"username": "void"}))
+        return Response(json.dumps({"Username": "void"}))
 
 
 @app.route('/customer/<int:user_id>', methods=["GET"])
