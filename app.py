@@ -33,22 +33,29 @@ def customer_by_username(username):
     # Query Customer table by username and pull all information if available
     customer_information = db.query('SELECT * FROM customer WHERE customer.Username = %s', [username])
     if len(customer_information) > 0:
+        for key, value in customer_information[0].items():
+            if value is None:
+                customer_information[0][key] = ""
         return Response(json.dumps(customer_information[0]))
     else:
         return Response(json.dumps({"Username": "void"}))
 
-# By email
-    @app.route('/customer/email/<email>', methods=["GET"])
-    def customer_by_email(email):
-        # Setup database connection
-        db = MySQL_Database()
 
-        # Query Customer table by username and pull all information if available
-        customer_information = db.query('SELECT * FROM customer WHERE customer.Username = %s', [username])
-        if len(customer_information) > 0:
-            return Response(json.dumps(customer_information[0]))
-        else:
-            return Response(json.dumps({"Username": "void"}))
+# By email
+@app.route('/customer/email/<email>', methods=["GET"])
+def customer_by_email(email):
+    # Setup database connection
+    db = MySQL_Database()
+
+    # Query Customer table by username and pull all information if available
+    customer_information = db.query('SELECT * FROM customer WHERE customer.Email = %s', [email])
+    if len(customer_information) > 0:
+        for key, value in customer_information[0].items():
+            if value is None:
+                customer_information[0][key] = ""
+        return Response(json.dumps(customer_information[0]))
+    else:
+        return Response(json.dumps({"Username": "void"}))
 
 # By user_id
 @app.route('/customer/user_id/<int:user_id>', methods=["GET"])
@@ -59,6 +66,9 @@ def customer_by_user_id(user_id):
     # Query customer (by a customer user_id) and pull all information available
     customer_information = db.query('SELECT * FROM customer WHERE customer.Customer_ID = %s', [user_id])
     if len(customer_information) > 0:
+        for key, value in customer_information[0].items():
+            if value is None:
+                customer_information[0][key] = ""
         return Response(json.dumps(customer_information[0]))
     else:
         return Response(json.dumps({"Customer_ID": "void"}))
