@@ -34,7 +34,7 @@ def customer_by_username(username):
     if len(customer_information) > 0:
         return Response(json.dumps(customer_information[0]))
     else:
-        return Response(json.dumps({"customer": "void"}))
+        return Response(json.dumps({"username": "void"}))
 
 
 @app.route('/customer/<int:user_id>', methods=["GET"])
@@ -47,17 +47,18 @@ def customer_by_user_id(user_id):
     if len(customer_information) > 0:
         return Response(json.dumps(customer_information[0]))
     else:
-        return Response(json.dumps({"customer": "void"}))
+        return Response(json.dumps({"Customer_ID": "void"}))
 
 
 @app.route('/order/<username>', methods=["GET"])
 def order_by_username(username):
-    # Setup database connection
-    db = MySQL_Database()
-
-    # Query customer (by a customer user_id) and pull all information available
-    customer_information = db.query('SELECT o.Order_ID, od. FROM order WHERE customer.Customer_ID = %s', [user_id])
-    return Response(json.dumps(customer_information[0]))
+    # # Setup database connection
+    # db = MySQL_Database()
+    #
+    # # Query customer (by a customer user_id) and pull all information available
+    # customer_information = db.query('SELECT o.Order_ID, od. FROM order WHERE customer.Customer_ID = %s', [user_id])
+    # return Response(json.dumps(customer_information[0]))
+    return -1
 
 
 if __name__ == '__main__':
