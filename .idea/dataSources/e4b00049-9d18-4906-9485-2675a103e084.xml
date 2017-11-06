@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="heroku_a30f91994430fa4@us-cdbr-iron-east-05.cleardb.net">
-  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.1">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
     <root id="1"/>
     <schema id="2" parent="1" name="heroku_a30f91994430fa4">
       <Current>1</Current>
@@ -104,25 +104,29 @@
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="32" parent="7" name="Order_ID">
-      <Position>2</Position>
-      <DataType>int(11)|0</DataType>
-    </column>
-    <column id="33" parent="7" name="Order_Details_ID">
+    <column id="32" parent="7" name="Order_Details_ID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <index id="34" parent="7" name="Order_ID">
+    <column id="33" parent="7" name="Order_ID">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="34" parent="7" name="Item_Type">
+      <Position>3</Position>
+      <DataType>text|0</DataType>
+    </column>
+    <index id="35" parent="7" name="Order_ID">
       <ColNames>Order_ID</ColNames>
     </index>
-    <key id="35" parent="7" name="PRIMARY">
+    <key id="36" parent="7" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>Order_Details_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="36" parent="7" name="order_details_ibfk_1">
+    <foreign-key id="37" parent="7" name="order_details_ibfk_1">
       <ColNames>Order_ID</ColNames>
       <RefSchemaName>heroku_a30f91994430fa4</RefSchemaName>
       <RefTableName>orders</RefTableName>
@@ -130,48 +134,40 @@
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="37" parent="8" name="Order_ID">
+    <column id="38" parent="8" name="Order_ID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="38" parent="8" name="Customer_ID">
+    <column id="39" parent="8" name="Customer_ID">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="39" parent="8" name="Staff_ID">
+    <column id="40" parent="8" name="Staff_ID">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="40" parent="8" name="Time">
+    <column id="41" parent="8" name="DateTime">
       <Position>4</Position>
-      <DataType>decimal(10)|0</DataType>
-    </column>
-    <column id="41" parent="8" name="Date">
-      <Position>5</Position>
-      <DataType>decimal(10)|0</DataType>
-    </column>
-    <column id="42" parent="8" name="Status">
-      <Position>6</Position>
-      <DataType>int(11)|0</DataType>
-    </column>
-    <column id="43" parent="8" name="Item_Type">
-      <Position>7</Position>
       <DataType>text|0</DataType>
     </column>
-    <index id="44" parent="8" name="Customer_ID">
+    <column id="42" parent="8" name="Status">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <index id="43" parent="8" name="Customer_ID">
       <ColNames>Customer_ID</ColNames>
     </index>
-    <index id="45" parent="8" name="Staff_ID">
+    <index id="44" parent="8" name="Staff_ID">
       <ColNames>Staff_ID</ColNames>
     </index>
-    <key id="46" parent="8" name="PRIMARY">
+    <key id="45" parent="8" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>Order_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="47" parent="8" name="orders_ibfk_1">
+    <foreign-key id="46" parent="8" name="orders_ibfk_1">
       <ColNames>Customer_ID</ColNames>
       <RefSchemaName>heroku_a30f91994430fa4</RefSchemaName>
       <RefTableName>customer</RefTableName>
@@ -179,7 +175,7 @@
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="48" parent="8" name="orders_ibfk_2">
+    <foreign-key id="47" parent="8" name="orders_ibfk_2">
       <ColNames>Staff_ID</ColNames>
       <RefSchemaName>heroku_a30f91994430fa4</RefSchemaName>
       <RefTableName>staff</RefTableName>
@@ -187,41 +183,41 @@
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="49" parent="9" name="Staff_ID">
+    <column id="48" parent="9" name="Staff_ID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="50" parent="9" name="Staff_Type_ID">
+    <column id="49" parent="9" name="Staff_Type_ID">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="51" parent="9" name="Username">
+    <column id="50" parent="9" name="Username">
       <Position>3</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="52" parent="9" name="Iterations">
+    <column id="51" parent="9" name="Iterations">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="53" parent="9" name="Salt">
+    <column id="52" parent="9" name="Salt">
       <Position>5</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="54" parent="9" name="PassHash">
+    <column id="53" parent="9" name="PassHash">
       <Position>6</Position>
       <DataType>text|0</DataType>
     </column>
-    <index id="55" parent="9" name="Staff_Type_ID">
+    <index id="54" parent="9" name="Staff_Type_ID">
       <ColNames>Staff_Type_ID</ColNames>
     </index>
-    <key id="56" parent="9" name="PRIMARY">
+    <key id="55" parent="9" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>Staff_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="57" parent="9" name="staff_ibfk_1">
+    <foreign-key id="56" parent="9" name="staff_ibfk_1">
       <ColNames>Staff_Type_ID</ColNames>
       <RefSchemaName>heroku_a30f91994430fa4</RefSchemaName>
       <RefTableName>staff_type</RefTableName>
@@ -229,56 +225,56 @@
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="58" parent="10" name="Staff_Type_ID">
+    <column id="57" parent="10" name="Staff_Type_ID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="59" parent="10" name="Staff_Type">
+    <column id="58" parent="10" name="Staff_Type">
       <Position>2</Position>
       <DataType>text|0</DataType>
     </column>
-    <key id="60" parent="10" name="PRIMARY">
+    <key id="59" parent="10" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>Staff_Type_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="61" parent="11" name="Stock_ID">
+    <column id="60" parent="11" name="Stock_ID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="62" parent="11" name="Category_ID">
+    <column id="61" parent="11" name="Category_ID">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="63" parent="11" name="Ingredient_Name">
+    <column id="62" parent="11" name="Ingredient_Name">
       <Position>3</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="64" parent="11" name="Stock_Level">
+    <column id="63" parent="11" name="Stock_Level">
       <Position>4</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(10) unsigned|0</DataType>
     </column>
-    <column id="65" parent="11" name="Price">
+    <column id="64" parent="11" name="Price">
       <Position>5</Position>
       <DataType>double|0</DataType>
     </column>
-    <column id="66" parent="11" name="Img_File_Name">
+    <column id="65" parent="11" name="Img_File_Name">
       <Position>6</Position>
       <DataType>text|0</DataType>
     </column>
-    <index id="67" parent="11" name="Category_ID">
+    <index id="66" parent="11" name="Category_ID">
       <ColNames>Category_ID</ColNames>
     </index>
-    <key id="68" parent="11" name="PRIMARY">
+    <key id="67" parent="11" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>Stock_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="69" parent="11" name="stock_ibfk_1">
+    <foreign-key id="68" parent="11" name="stock_ibfk_1">
       <ColNames>Category_ID</ColNames>
       <RefSchemaName>heroku_a30f91994430fa4</RefSchemaName>
       <RefTableName>category</RefTableName>
@@ -286,29 +282,29 @@
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="70" parent="12" name="id">
+    <column id="69" parent="12" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="71" parent="12" name="username">
+    <column id="70" parent="12" name="username">
       <Position>2</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="72" parent="12" name="hash">
+    <column id="71" parent="12" name="hash">
       <Position>3</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="73" parent="12" name="salt">
+    <column id="72" parent="12" name="salt">
       <Position>4</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="74" parent="12" name="iterations">
+    <column id="73" parent="12" name="iterations">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <key id="75" parent="12" name="PRIMARY">
+    <key id="74" parent="12" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

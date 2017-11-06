@@ -88,4 +88,3 @@ class MySQL_Database:
     # Method to check DB connection status
     def check_connection(self):
         print(self._db_conn)
-

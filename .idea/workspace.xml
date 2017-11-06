@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b7586630-8f87-4733-aa2f-b2401252017d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/X-BurgerAPI.iml" afterPath="$PROJECT_DIR$/.idea/X-BurgerAPI.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="b7586630-8f87-4733-aa2f-b2401252017d" name="Default" comment="Removed Singleton logic reviewing other options for database access management">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/e4b00049-9d18-4906-9485-2675a103e084.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/e4b00049-9d18-4906-9485-2675a103e084.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.py" afterPath="$PROJECT_DIR$/app.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysql_db.py" afterPath="$PROJECT_DIR$/mysql_db.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,8 +18,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/X_BurgerAPI$app.coverage" NAME="app Coverage Results" MODIFIED="1509763492295" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/X_BurgerAPI$app.coverage" NAME="app Coverage Results" MODIFIED="1509917217767" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/X_BurgerAPI$x_BurgerAPI.coverage" NAME="x-BurgerAPI Coverage Results" MODIFIED="1509598125641" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/XBurgerAPI$app.coverage" NAME="app Coverage Results" MODIFIED="1510006917741" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -25,34 +30,87 @@
     <option name="SHOW_TABLE_DETAILS" value="true" />
     <option name="SHOW_EMPTY_GROUPS" value="false" />
     <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <expand />
+    <expand>
+      <path>
+        <item name="" type="eadb38e5:DatabaseStructure$Root" />
+        <item name="heroku_a30f91994430fa4@us-cdbr-iron-east-05.cleardb.net" type="e3449647:DbNodeDescriptor" />
+      </path>
+      <path>
+        <item name="" type="eadb38e5:DatabaseStructure$Root" />
+        <item name="heroku_a30f91994430fa4@us-cdbr-iron-east-05.cleardb.net" type="e3449647:DbNodeDescriptor" />
+        <item name="heroku_a30f91994430fa4" type="e3449647:DbNodeDescriptor" />
+      </path>
+      <path>
+        <item name="" type="eadb38e5:DatabaseStructure$Root" />
+        <item name="heroku_a30f91994430fa4@us-cdbr-iron-east-05.cleardb.net" type="e3449647:DbNodeDescriptor" />
+        <item name="heroku_a30f91994430fa4" type="e3449647:DbNodeDescriptor" />
+        <item name="item_details" type="e3449647:DbNodeDescriptor" />
+      </path>
+      <path>
+        <item name="" type="eadb38e5:DatabaseStructure$Root" />
+        <item name="heroku_a30f91994430fa4@us-cdbr-iron-east-05.cleardb.net" type="e3449647:DbNodeDescriptor" />
+        <item name="heroku_a30f91994430fa4" type="e3449647:DbNodeDescriptor" />
+        <item name="order_details" type="e3449647:DbNodeDescriptor" />
+      </path>
+      <path>
+        <item name="" type="eadb38e5:DatabaseStructure$Root" />
+        <item name="heroku_a30f91994430fa4@us-cdbr-iron-east-05.cleardb.net" type="e3449647:DbNodeDescriptor" />
+        <item name="heroku_a30f91994430fa4" type="e3449647:DbNodeDescriptor" />
+        <item name="orders" type="e3449647:DbNodeDescriptor" />
+      </path>
+      <path>
+        <item name="" type="eadb38e5:DatabaseStructure$Root" />
+        <item name="heroku_a30f91994430fa4@us-cdbr-iron-east-05.cleardb.net" type="e3449647:DbNodeDescriptor" />
+        <item name="heroku_a30f91994430fa4" type="e3449647:DbNodeDescriptor" />
+        <item name="stock" type="e3449647:DbNodeDescriptor" />
+      </path>
+    </expand>
     <select />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app.py">
+      <file leaf-file-name="mysql_db.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mysql_db.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="58" column="61" lean-forward="false" selection-start-line="58" selection-start-column="61" selection-end-line="58" selection-end-column="61" />
+            <state relative-caret-position="297">
+              <caret line="66" column="19" lean-forward="false" selection-start-line="66" selection-start-column="19" selection-end-line="66" selection-end-column="23" />
               <folding>
-                <element signature="e#0#48#0" expanded="true" />
-                <marker date="1509771904374" expanded="true" signature="863:914" ph="SELECT * FRO... customer" />
-                <marker date="1509771904374" expanded="true" signature="1363:1417" ph="SELECT * FRO... customer" />
-                <marker date="1509771904374" expanded="true" signature="1858:1923" ph="SELECT o.Ord... " />
+                <element signature="e#0#14#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mysql_db.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mysql_db.py">
+      <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="876">
+              <caret line="118" column="37" lean-forward="false" selection-start-line="118" selection-start-column="37" selection-end-line="118" selection-end-column="37" />
               <folding>
-                <element signature="e#0#14#0" expanded="true" />
+                <element signature="e#0#48#0" expanded="true" />
+                <marker date="1510007186971" expanded="true" signature="902:953" ph="SELECT * FRO... customer" />
+                <marker date="1510007186971" expanded="true" signature="1545:1593" ph="SELECT * FRO... customer" />
+                <marker date="1510007186971" expanded="true" signature="2198:2252" ph="SELECT * FRO... customer" />
+                <marker date="1510007186971" expanded="true" signature="2877:2956" ph="INSERT INTO ORDERS... " />
+                <marker date="1510007186971" expanded="true" signature="3076:3137" ph="SELECT Order... orders" />
+                <marker date="1510007186971" expanded="true" signature="3076:3153" ph="SELECT Order... orders" />
+                <marker date="1510007186971" expanded="true" signature="3461:3508" ph="INSERT INTO order_details... " />
+                <marker date="1510007186971" expanded="true" signature="3653:3720" ph="SELECT MAX(O... order_details" />
+                <marker date="1510007186971" expanded="true" signature="4013:4066" ph="INSERT INTO item_details... " />
+                <marker date="1510007186971" expanded="true" signature="4013:4082" ph="INSERT INTO item_details... " />
+                <marker date="1510007186971" expanded="true" signature="4013:4105" ph="INSERT INTO item_details... " />
+                <marker date="1510007186971" expanded="true" signature="4190:4254" ph="UPDATE stock... " />
+                <marker date="1510007186971" expanded="true" signature="4384:4432" ph="UPDATE order... " />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="stock" pinned="false" current-in-tab="false">
+        <entry file="das://table:/217d34b/e4b00049-9d18-4906-9485-2675a103e084/heroku_a30f91994430fa4.stock">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
             </state>
           </provider>
         </entry>
@@ -63,19 +121,25 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Flask Main" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <push-targets>
+      <push-target-info target-remote="origin" target-branch="master" repo="$PROJECT_DIR$" source="master" />
+    </push-targets>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/X-BurgerAPI.py" />
         <option value="$PROJECT_DIR$/Procfile" />
-        <option value="$PROJECT_DIR$/mysql_db.py" />
         <option value="$PROJECT_DIR$/config.ini" />
+        <option value="$PROJECT_DIR$/Singleton.py" />
+        <option value="$PROJECT_DIR$/test.sql" />
+        <option value="$PROJECT_DIR$/mysql_db.py" />
         <option value="$PROJECT_DIR$/app.py" />
       </list>
     </option>
@@ -86,10 +150,10 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-13" />
-    <option name="y" value="-13" />
-    <option name="width" value="1946" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="671" />
+    <option name="y" value="-16" />
+    <option name="width" value="1522" />
     <option name="height" value="1106" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -109,12 +173,22 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="ProjectPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="XBurgerAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="XBurgerAPI" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
   </component>
@@ -398,23 +472,60 @@
       <option name="project" value="LOCAL" />
       <updated>1509764499688</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Customer by username query route added 04/11/2017">
+      <created>1509843524042</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1509843524042</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Customer by username query route added 04/11/2017">
+      <created>1509843666253</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1509843666253</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Customer by username query route added 04/11/2017">
+      <created>1509872017571</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1509872017571</updated>
+    </task>
+    <task id="LOCAL-00009" summary="GET methods for user details completed">
+      <created>1509913342685</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1509913342685</updated>
+    </task>
+    <task id="LOCAL-00010" summary="GET methods for user details completed">
+      <created>1509915889408</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1509915889408</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-13" y="-13" width="1946" height="1106" extended-state="0" />
+    <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17983368" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21049896" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32692307" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33142203" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32568806" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32918888" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32918888" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3285968" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33486238" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1234375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14583333" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -461,22 +572,192 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="API development" />
     <MESSAGE value="Customer by username query route added 04/11/2017" />
-    <option name="LAST_COMMIT_MESSAGE" value="Customer by username query route added 04/11/2017" />
+    <MESSAGE value="GET methods for user details completed" />
+    <option name="LAST_COMMIT_MESSAGE" value="GET methods for user details completed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/mysql_db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/217d34b/e4b00049-9d18-4906-9485-2675a103e084/heroku_a30f91994430fa4.customer">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2200">
+          <caret line="91" column="32" lean-forward="false" selection-start-line="91" selection-start-column="32" selection-end-line="91" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+            <marker date="1510007186971" expanded="true" signature="902:953" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="1545:1593" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="2198:2252" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="2877:2956" ph="INSERT INTO ORDERS... " />
+            <marker date="1510007186971" expanded="true" signature="3076:3137" ph="SELECT Order... orders" />
+            <marker date="1510007186971" expanded="true" signature="3076:3153" ph="SELECT Order... orders" />
+            <marker date="1510007186971" expanded="true" signature="3461:3508" ph="INSERT INTO order_details... " />
+            <marker date="1510007186971" expanded="true" signature="3653:3720" ph="SELECT MAX(O... order_details" />
+            <marker date="1510007186971" expanded="true" signature="4013:4066" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4013:4082" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4013:4105" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4190:4254" ph="UPDATE stock... " />
+            <marker date="1510007186971" expanded="true" signature="4384:4432" ph="UPDATE order... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="5" column="67" lean-forward="false" selection-start-line="5" selection-start-column="67" selection-end-line="5" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysql_db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2400">
+          <caret line="97" column="0" lean-forward="false" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="5" column="67" lean-forward="true" selection-start-line="5" selection-start-column="67" selection-end-line="5" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2200">
+          <caret line="91" column="32" lean-forward="true" selection-start-line="91" selection-start-column="32" selection-end-line="91" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+            <marker date="1510007186971" expanded="true" signature="902:953" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="1545:1593" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="2198:2252" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="2877:2956" ph="INSERT INTO ORDERS... " />
+            <marker date="1510007186971" expanded="true" signature="3076:3137" ph="SELECT Order... orders" />
+            <marker date="1510007186971" expanded="true" signature="3076:3153" ph="SELECT Order... orders" />
+            <marker date="1510007186971" expanded="true" signature="3461:3508" ph="INSERT INTO order_details... " />
+            <marker date="1510007186971" expanded="true" signature="3653:3720" ph="SELECT MAX(O... order_details" />
+            <marker date="1510007186971" expanded="true" signature="4013:4066" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4013:4082" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4013:4105" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4190:4254" ph="UPDATE stock... " />
+            <marker date="1510007186971" expanded="true" signature="4384:4432" ph="UPDATE order... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2000">
+          <caret line="82" column="91" lean-forward="false" selection-start-line="82" selection-start-column="60" selection-end-line="82" selection-end-column="91" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+            <marker date="1510007186971" expanded="true" signature="902:953" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="1545:1593" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="2198:2252" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="2877:2956" ph="INSERT INTO ORDERS... " />
+            <marker date="1510007186971" expanded="true" signature="3076:3137" ph="SELECT Order... orders" />
+            <marker date="1510007186971" expanded="true" signature="3076:3153" ph="SELECT Order... orders" />
+            <marker date="1510007186971" expanded="true" signature="3461:3508" ph="INSERT INTO order_details... " />
+            <marker date="1510007186971" expanded="true" signature="3653:3720" ph="SELECT MAX(O... order_details" />
+            <marker date="1510007186971" expanded="true" signature="4013:4066" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4013:4082" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4013:4105" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4190:4254" ph="UPDATE stock... " />
+            <marker date="1510007186971" expanded="true" signature="4384:4432" ph="UPDATE order... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/217d34b/e4b00049-9d18-4906-9485-2675a103e084/heroku_a30f91994430fa4.staff">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysql_db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2250">
+          <caret line="91" column="30" lean-forward="false" selection-start-line="91" selection-start-column="30" selection-end-line="91" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/217d34b/e4b00049-9d18-4906-9485-2675a103e084/heroku_a30f91994430fa4.stock">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#48#0" expanded="true" />
-            <marker date="1509771904374" expanded="true" signature="863:914" ph="SELECT * FRO... customer" />
-            <marker date="1509771904374" expanded="true" signature="1363:1417" ph="SELECT * FRO... customer" />
-            <marker date="1509771904374" expanded="true" signature="1858:1923" ph="SELECT o.Ord... " />
+            <marker date="1510007186971" expanded="true" signature="902:953" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="1545:1593" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="2198:2252" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="2877:2956" ph="INSERT INTO ORDERS... " />
+            <marker date="1510007186971" expanded="true" signature="3076:3137" ph="SELECT Order... orders" />
+            <marker date="1510007186971" expanded="true" signature="3076:3153" ph="SELECT Order... orders" />
+            <marker date="1510007186971" expanded="true" signature="3461:3508" ph="INSERT INTO order_details... " />
+            <marker date="1510007186971" expanded="true" signature="3653:3720" ph="SELECT MAX(O... order_details" />
+            <marker date="1510007186971" expanded="true" signature="4013:4066" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4013:4082" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4013:4105" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4190:4254" ph="UPDATE stock... " />
+            <marker date="1510007186971" expanded="true" signature="4384:4432" ph="UPDATE order... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+            <marker date="1510007186971" expanded="true" signature="902:953" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="1545:1593" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="2198:2252" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="2877:2956" ph="INSERT INTO ORDERS... " />
+            <marker date="1510007186971" expanded="true" signature="3076:3137" ph="SELECT Order... orders" />
+            <marker date="1510007186971" expanded="true" signature="3076:3153" ph="SELECT Order... orders" />
+            <marker date="1510007186971" expanded="true" signature="3461:3508" ph="INSERT INTO order_details... " />
+            <marker date="1510007186971" expanded="true" signature="3653:3720" ph="SELECT MAX(O... order_details" />
+            <marker date="1510007186971" expanded="true" signature="4013:4066" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4013:4082" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4013:4105" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4190:4254" ph="UPDATE stock... " />
+            <marker date="1510007186971" expanded="true" signature="4384:4432" ph="UPDATE order... " />
           </folding>
         </state>
       </provider>
@@ -497,9 +778,52 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#48#0" expanded="true" />
-            <marker date="1509771904374" expanded="true" signature="863:914" ph="SELECT * FRO... customer" />
-            <marker date="1509771904374" expanded="true" signature="1363:1417" ph="SELECT * FRO... customer" />
-            <marker date="1509771904374" expanded="true" signature="1858:1923" ph="SELECT o.Ord... " />
+            <marker date="1510007186971" expanded="true" signature="902:953" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="1545:1593" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="2198:2252" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="2877:2956" ph="INSERT INTO ORDERS... " />
+            <marker date="1510007186971" expanded="true" signature="3076:3137" ph="SELECT Order... orders" />
+            <marker date="1510007186971" expanded="true" signature="3076:3153" ph="SELECT Order... orders" />
+            <marker date="1510007186971" expanded="true" signature="3461:3508" ph="INSERT INTO order_details... " />
+            <marker date="1510007186971" expanded="true" signature="3653:3720" ph="SELECT MAX(O... order_details" />
+            <marker date="1510007186971" expanded="true" signature="4013:4066" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4013:4082" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4013:4105" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4190:4254" ph="UPDATE stock... " />
+            <marker date="1510007186971" expanded="true" signature="4384:4432" ph="UPDATE order... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysql_db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1848">
+          <caret line="58" column="61" lean-forward="false" selection-start-line="58" selection-start-column="61" selection-end-line="58" selection-end-column="61" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+            <marker date="1510007186971" expanded="true" signature="902:953" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="1545:1593" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="2198:2252" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="2877:2956" ph="INSERT INTO ORDERS... " />
+            <marker date="1510007186971" expanded="true" signature="3076:3137" ph="SELECT Order... orders" />
+            <marker date="1510007186971" expanded="true" signature="3076:3153" ph="SELECT Order... orders" />
+            <marker date="1510007186971" expanded="true" signature="3461:3508" ph="INSERT INTO order_details... " />
+            <marker date="1510007186971" expanded="true" signature="3653:3720" ph="SELECT MAX(O... order_details" />
+            <marker date="1510007186971" expanded="true" signature="4013:4066" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4013:4082" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4013:4105" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4190:4254" ph="UPDATE stock... " />
+            <marker date="1510007186971" expanded="true" signature="4384:4432" ph="UPDATE order... " />
           </folding>
         </state>
       </provider>
@@ -520,32 +844,19 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#48#0" expanded="true" />
-            <marker date="1509771904374" expanded="true" signature="863:914" ph="SELECT * FRO... customer" />
-            <marker date="1509771904374" expanded="true" signature="1363:1417" ph="SELECT * FRO... customer" />
-            <marker date="1509771904374" expanded="true" signature="1858:1923" ph="SELECT o.Ord... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysql_db.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-            <marker date="1509771904374" expanded="true" signature="863:914" ph="SELECT * FRO... customer" />
-            <marker date="1509771904374" expanded="true" signature="1363:1417" ph="SELECT * FRO... customer" />
-            <marker date="1509771904374" expanded="true" signature="1858:1923" ph="SELECT o.Ord... " />
+            <marker date="1510007186971" expanded="true" signature="902:953" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="1545:1593" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="2198:2252" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="2877:2956" ph="INSERT INTO ORDERS... " />
+            <marker date="1510007186971" expanded="true" signature="3076:3137" ph="SELECT Order... orders" />
+            <marker date="1510007186971" expanded="true" signature="3076:3153" ph="SELECT Order... orders" />
+            <marker date="1510007186971" expanded="true" signature="3461:3508" ph="INSERT INTO order_details... " />
+            <marker date="1510007186971" expanded="true" signature="3653:3720" ph="SELECT MAX(O... order_details" />
+            <marker date="1510007186971" expanded="true" signature="4013:4066" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4013:4082" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4013:4105" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4190:4254" ph="UPDATE stock... " />
+            <marker date="1510007186971" expanded="true" signature="4384:4432" ph="UPDATE order... " />
           </folding>
         </state>
       </provider>
@@ -566,9 +877,19 @@
           <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding>
             <element signature="e#0#48#0" expanded="true" />
-            <marker date="1509771904374" expanded="true" signature="863:914" ph="SELECT * FRO... customer" />
-            <marker date="1509771904374" expanded="true" signature="1363:1417" ph="SELECT * FRO... customer" />
-            <marker date="1509771904374" expanded="true" signature="1858:1923" ph="SELECT o.Ord... " />
+            <marker date="1510007186971" expanded="true" signature="902:953" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="1545:1593" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="2198:2252" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="2877:2956" ph="INSERT INTO ORDERS... " />
+            <marker date="1510007186971" expanded="true" signature="3076:3137" ph="SELECT Order... orders" />
+            <marker date="1510007186971" expanded="true" signature="3076:3153" ph="SELECT Order... orders" />
+            <marker date="1510007186971" expanded="true" signature="3461:3508" ph="INSERT INTO order_details... " />
+            <marker date="1510007186971" expanded="true" signature="3653:3720" ph="SELECT MAX(O... order_details" />
+            <marker date="1510007186971" expanded="true" signature="4013:4066" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4013:4082" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4013:4105" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4190:4254" ph="UPDATE stock... " />
+            <marker date="1510007186971" expanded="true" signature="4384:4432" ph="UPDATE order... " />
           </folding>
         </state>
       </provider>
@@ -588,13 +909,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-396">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config.ini">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -602,29 +916,97 @@
         </state>
       </provider>
     </entry>
+    <entry file="dbDummy://dbtable:/a70f721e/e4b00049-9d18-4906-9485-2675a103e084/heroku_a30f91994430fa4.item_details" />
+    <entry file="dbDummy://dbtable:/a70f721e/e4b00049-9d18-4906-9485-2675a103e084/heroku_a30f91994430fa4.order_details" />
+    <entry file="dbDummy://dbtable:/a70f721e/e4b00049-9d18-4906-9485-2675a103e084/heroku_a30f91994430fa4.category" />
     <entry file="dbDummy://dbtable:/a70f721e/e4b00049-9d18-4906-9485-2675a103e084/heroku_a30f91994430fa4.customer" />
+    <entry file="file://$PROJECT_DIR$/Singleton.py" />
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-837">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/217d34b/e4b00049-9d18-4906-9485-2675a103e084/heroku_a30f91994430fa4.staff">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/217d34b/e4b00049-9d18-4906-9485-2675a103e084/heroku_a30f91994430fa4.customer">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/217d34b/e4b00049-9d18-4906-9485-2675a103e084/heroku_a30f91994430fa4.order_details">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/217d34b/e4b00049-9d18-4906-9485-2675a103e084/heroku_a30f91994430fa4.orders">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="7" column="59" lean-forward="true" selection-start-line="7" selection-start-column="59" selection-end-line="7" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/217d34b/e4b00049-9d18-4906-9485-2675a103e084/heroku_a30f91994430fa4.item_details">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mysql_db.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="297">
+          <caret line="66" column="19" lean-forward="false" selection-start-line="66" selection-start-column="19" selection-end-line="66" selection-end-column="23" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/a70f721e/e4b00049-9d18-4906-9485-2675a103e084/heroku_a30f91994430fa4.item_details" />
-    <entry file="dbDummy://dbtable:/a70f721e/e4b00049-9d18-4906-9485-2675a103e084/heroku_a30f91994430fa4.order_details" />
-    <entry file="dbDummy://dbtable:/a70f721e/e4b00049-9d18-4906-9485-2675a103e084/heroku_a30f91994430fa4.category" />
+    <entry file="das://table:/217d34b/e4b00049-9d18-4906-9485-2675a103e084/heroku_a30f91994430fa4.stock">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="58" column="61" lean-forward="false" selection-start-line="58" selection-start-column="61" selection-end-line="58" selection-end-column="61" />
+        <state relative-caret-position="876">
+          <caret line="118" column="37" lean-forward="false" selection-start-line="118" selection-start-column="37" selection-end-line="118" selection-end-column="37" />
           <folding>
             <element signature="e#0#48#0" expanded="true" />
-            <marker date="1509771904374" expanded="true" signature="863:914" ph="SELECT * FRO... customer" />
-            <marker date="1509771904374" expanded="true" signature="1363:1417" ph="SELECT * FRO... customer" />
-            <marker date="1509771904374" expanded="true" signature="1858:1923" ph="SELECT o.Ord... " />
+            <marker date="1510007186971" expanded="true" signature="902:953" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="1545:1593" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="2198:2252" ph="SELECT * FRO... customer" />
+            <marker date="1510007186971" expanded="true" signature="2877:2956" ph="INSERT INTO ORDERS... " />
+            <marker date="1510007186971" expanded="true" signature="3076:3137" ph="SELECT Order... orders" />
+            <marker date="1510007186971" expanded="true" signature="3076:3153" ph="SELECT Order... orders" />
+            <marker date="1510007186971" expanded="true" signature="3461:3508" ph="INSERT INTO order_details... " />
+            <marker date="1510007186971" expanded="true" signature="3653:3720" ph="SELECT MAX(O... order_details" />
+            <marker date="1510007186971" expanded="true" signature="4013:4066" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4013:4082" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4013:4105" ph="INSERT INTO item_details... " />
+            <marker date="1510007186971" expanded="true" signature="4190:4254" ph="UPDATE stock... " />
+            <marker date="1510007186971" expanded="true" signature="4384:4432" ph="UPDATE order... " />
           </folding>
         </state>
       </provider>
