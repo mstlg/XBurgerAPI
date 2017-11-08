@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b7586630-8f87-4733-aa2f-b2401252017d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.py" afterPath="$PROJECT_DIR$/app.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.sql" afterPath="$PROJECT_DIR$/test.sql" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -44,7 +42,7 @@
       <file leaf-file-name="mysql_db.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mysql_db.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1398">
+            <state relative-caret-position="1850">
               <caret line="75" column="34" lean-forward="false" selection-start-line="75" selection-start-column="34" selection-end-line="75" selection-end-column="34" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
@@ -56,8 +54,8 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="337" column="31" lean-forward="true" selection-start-line="337" selection-start-column="31" selection-end-line="337" selection-end-column="31" />
+            <state relative-caret-position="25">
+              <caret line="337" column="31" lean-forward="false" selection-start-line="337" selection-start-column="31" selection-end-line="337" selection-end-column="31" />
               <folding>
                 <element signature="e#0#66#0" expanded="true" />
                 <marker date="1510117593693" expanded="true" signature="920:971" ph="SELECT * FRO... customer" />
@@ -106,7 +104,7 @@
       <file leaf-file-name="test.sql" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
+            <state relative-caret-position="725">
               <caret line="29" column="65" lean-forward="false" selection-start-line="29" selection-start-column="65" selection-end-line="29" selection-end-column="65" />
               <folding />
             </state>
@@ -192,8 +190,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -205,6 +201,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -604,30 +602,37 @@
       <option name="project" value="LOCAL" />
       <updated>1510113637795</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Added staff routes and restock route (pending java update)">
+      <created>1510117656381</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1510117656381</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13675676" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34767026" sideWeight="0.50864863" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35005975" sideWeight="0.50864863" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24918918" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29988053" sideWeight="0.48702702" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32497013" sideWeight="0.49783784" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32855436" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29988053" sideWeight="0.48702702" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3285968" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34767026" sideWeight="0.49135137" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13243243" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24918918" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3285968" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34767026" sideWeight="0.49135137" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -677,7 +682,8 @@
     <MESSAGE value="Post methods" />
     <MESSAGE value="Post methods again" />
     <MESSAGE value="Adding customers to database" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding customers to database" />
+    <MESSAGE value="Added staff routes and restock route (pending java update)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added staff routes and restock route (pending java update)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -686,6 +692,54 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8350">
+          <caret line="337" column="31" lean-forward="false" selection-start-line="337" selection-start-column="31" selection-end-line="337" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#66#0" expanded="true" />
+            <marker date="1510117593693" expanded="true" signature="920:971" ph="SELECT * FRO... customer" />
+            <marker date="1510117593693" expanded="true" signature="1563:1611" ph="SELECT * FRO... customer" />
+            <marker date="1510117593693" expanded="true" signature="2216:2270" ph="SELECT * FRO... customer" />
+            <marker date="1510117593693" expanded="true" signature="2907:2992" ph="INSERT INTO ORDERS... " />
+            <marker date="1510117593693" expanded="true" signature="3116:3177" ph="SELECT Order... orders" />
+            <marker date="1510117593693" expanded="true" signature="3116:3193" ph="SELECT Order... orders" />
+            <marker date="1510117593693" expanded="true" signature="3423:3512" ph="INSERT INTO order_details... " />
+            <marker date="1510117593693" expanded="true" signature="3423:3543" ph="INSERT INTO order_details... " />
+            <marker date="1510117593693" expanded="true" signature="3999:4052" ph="INSERT INTO item_details... " />
+            <marker date="1510117593693" expanded="true" signature="3999:4218" ph="INSERT INTO item_details... " />
+            <marker date="1510117593693" expanded="true" signature="3999:4222" ph="INSERT INTO item_details... " />
+            <marker date="1510117593693" expanded="true" signature="4062:4212" ph="SELECT MAX(O... order_details" />
+            <marker date="1510117593693" expanded="true" signature="4128:4211" ph="SELECT Order... orders" />
+            <marker date="1510117593693" expanded="true" signature="4304:4368" ph="UPDATE stock... " />
+            <marker date="1510117593693" expanded="true" signature="4481:4516" ph="DELETE FROM " />
+            <marker date="1510117593693" expanded="true" signature="4481:4623" ph="DELETE FROM " />
+            <marker date="1510117593693" expanded="true" signature="4487:4516" ph="UPDATE order... " />
+            <marker date="1510117593693" expanded="true" signature="4518:4622" ph="SELECT o.Ord... *" />
+            <marker date="1510117593693" expanded="true" signature="4542:4562" ph="SELECT * FRO... orders" />
+            <marker date="1510117593693" expanded="true" signature="5025:5044" ph="SELECT * FRO... stock" />
+            <marker date="1510117593693" expanded="true" signature="5025:5045" ph="SELECT * FRO... customer" />
+            <marker date="1510117593693" expanded="true" signature="5025:5050" ph="SELECT * FRO... stock" />
+            <marker date="1510117593693" expanded="true" signature="5569:5588" ph="SELECT * FRO... stock" />
+            <marker date="1510117593693" expanded="true" signature="5569:5610" ph="SELECT * FRO... stock" />
+            <marker date="1510117593693" expanded="true" signature="6144:6190" ph="SELECT * FRO... stock" />
+            <marker date="1510117593693" expanded="true" signature="6732:6771" ph="SELECT * FRO... stock" />
+            <marker date="1510117593693" expanded="true" signature="7299:7306" ph="SELECT * FRO... orders" />
+            <marker date="1510117593693" expanded="true" signature="7299:7582" ph="SELECT o.Ord... orders" />
+            <marker date="1510117593693" expanded="true" signature="7299:7596" ph="SELECT o.Ord... orders" />
+            <marker date="1510117593693" expanded="true" signature="8480:8766" ph="SELECT o.Ord... orders" />
+            <marker date="1510117593693" expanded="true" signature="10384:10423" ph="SELECT * FRO... staff" />
+            <marker date="1510117593693" expanded="true" signature="10751:10790" ph="SELECT * FRO... staff" />
+            <marker date="1510117593693" expanded="true" signature="11123:11167" ph="SELECT * FRO... staff" />
+            <marker date="1510117593693" expanded="true" signature="11695:11793" ph="INSERT INTO staff... " />
+            <marker date="1510117593693" expanded="true" signature="12542:12562" ph="INSERT INTO Customer... " />
+            <marker date="1510117593693" expanded="true" signature="12542:12653" ph="INSERT INTO Customer... " />
+            <marker date="1510117593693" expanded="true" signature="12542:12709" ph="INSERT INTO Customer... " />
+            <marker date="1510117593693" expanded="true" signature="13156:13223" ph="UPDATE Stock... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mysql_db.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1625">
@@ -1450,7 +1504,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mysql_db.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1398">
+        <state relative-caret-position="1850">
           <caret line="75" column="34" lean-forward="false" selection-start-line="75" selection-start-column="34" selection-end-line="75" selection-end-column="34" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
@@ -1474,7 +1528,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
+        <state relative-caret-position="725">
           <caret line="29" column="65" lean-forward="false" selection-start-line="29" selection-start-column="65" selection-end-line="29" selection-end-column="65" />
           <folding />
         </state>
@@ -1482,8 +1536,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="337" column="31" lean-forward="true" selection-start-line="337" selection-start-column="31" selection-end-line="337" selection-end-column="31" />
+        <state relative-caret-position="25">
+          <caret line="337" column="31" lean-forward="false" selection-start-line="337" selection-start-column="31" selection-end-line="337" selection-end-column="31" />
           <folding>
             <element signature="e#0#66#0" expanded="true" />
             <marker date="1510117593693" expanded="true" signature="920:971" ph="SELECT * FRO... customer" />
