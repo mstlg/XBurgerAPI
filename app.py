@@ -272,17 +272,6 @@ def getStaffByUsername(username):
         return Response(json.dumps({'Staff': 'Staff member not found.'}))
 
 
-@app.route('/staff/email/<email>')
-def getStaffByEmail(email):
-    db = MySQL_Database()
-    staff_details = db.query('SELECT * FROM staff WHERE Email = %s', [email])
-
-    if staff_details:
-        return Response(json.dumps({'Staff details': staff_details}))
-    else:
-        return Response(json.dumps({'Staff': 'Staff member not found.'}))
-
-
 @app.route('/staff/staff_id/<staff_id>')
 def getStaffById(staff_id):
     db = MySQL_Database()
