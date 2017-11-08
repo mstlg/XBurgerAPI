@@ -22,3 +22,5 @@ SELECT Order_ID from orders where Customer_ID = 1 order by DateTime DESC
 SELECT o.Order_ID, o.Customer_ID, o.DateTime, o.Status, od.Order_Details_ID, s.Stock_ID FROM orders AS o, order_details AS od, stock AS s, item_details AS id WHERE o.Customer_ID = 1 AND od.Order_ID = o.Order_ID AND id.Order_Details_ID = od.Order_Details_ID AND id.Stock_ID = s.Stock_ID
 
 SELECT orders.Order_ID, orders.Customer_ID, orders.DateTime, orders.Status, order_details.Order_Details_ID, stock.Stock_ID FROM orders JOIN order_details ON orders.Order_ID = order_details.Order_ID JOIN item_details ON order_details.Order_Details_ID = item_details.Order_Details_ID JOIN stock ON
+
+DELETE FROM orders WHERE Order_ID = (SELECT o.Order_ID FROM (SELECT * FROM orders) AS o WHERE Customer_ID = 1 ORDER BY DateTime DESC LIMIT 1);
