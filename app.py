@@ -175,6 +175,9 @@ def orderById(order_id):
 
     metadata = {}
 
+    if order_details is None:
+        return Response(json.dumps({'order_details_list' : 'no_order'}))
+
     for key in order_details[0]:
         metadata[key] = order_details[0][key]
 
