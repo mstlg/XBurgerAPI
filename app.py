@@ -92,15 +92,10 @@ def addOrder(customer_id):
     # order_ID_var = order_ID_list[0]["Order_ID"]
     # print(order_ID_var)
 
-    print(order_details_list)
-
     # Create an Order_Details entry in the database
+    db = MySQL_Database()
     for x in order_details_list:
-        print("x")
-        print(x)
-        db = MySQL_Database()
-        order_details = db.insert('INSERT INTO order_details (Order_ID) SELECT Order_ID FROM orders WHERE Customer_ID = (%s) ORDER BY DateTime ASC LIMIT 1', [customer_id])
-        print(order_details)
+        order_details = db.insertAndLeaveOpen('INSERT INTO order_details (Order_ID) SELECT Order_ID FROM orders WHERE Customer_ID = (%s) ORDER BY DateTime DESC LIMIT 1', [customer_id])
 
         # Get the Order_Details_ID from the database
         # db = MySQL_Database()
@@ -109,17 +104,14 @@ def addOrder(customer_id):
 
         # Create an Item_Details entry in the database
         for y in x:
-            print("y")
-            print(y)
-            db = MySQL_Database()
-            item_details = db.insert('INSERT INTO item_details (Order_Details_ID, Stock_ID) VALUES ((SELECT MAX(Order_Details_ID) FROM order_details WHERE Order_ID = (SELECT Order_ID FROM orders WHERE Customer_ID = (%s) ORDER BY DateTime ASC LIMIT 1)), %s)', [customer_id, y])
+            item_details = db.insertAndLeaveOpen('INSERT INTO item_details (Order_Details_ID, Stock_ID) VALUES ((SELECT MAX(Order_Details_ID) FROM order_details WHERE Order_ID = (SELECT Order_ID FROM orders WHERE Customer_ID = (%s) ORDER BY DateTime DESC LIMIT 1)), %s)', [customer_id, y])
 
-            db = MySQL_Database()
-            updateIngredients = db.update('UPDATE stock SET Stock_Level = Stock_Level-1 where Stock_ID = %s', [y])
+            updateIngredients = db.insertAndLeaveOpen('UPDATE stock SET Stock_Level = Stock_Level-1 where Stock_ID = %s', [y])
             if updateIngredients is None:
-                db = MySQL_Database()
-                updateStatus = db.update('UPDATE orders SET status = 3 WHERE Order_ID = %s', [order_ID_var])
+                updateStatus = db.insertAndLeaveOpen('UPDATE orders SET status = 3 WHERE Order_ID = (SELECT Order_ID FROM orders WHERE Customer_ID = (%s) ORDER BY DateTime DESC LIMIT 1)')
                 return Response(json.dumps({"Insufficient Ingredients": y}))
+
+    db.check_and_close_connection()
 
     return Response(json.dumps({"Order": "Added"}))
 
@@ -216,30 +208,66 @@ def orderById(order_id):
 
     return Response(json.dumps(jsondict))
 
-# @app.route('/order/list/<int:user_id>', methods=["GET"])
-# def orderByCustomer(user_id):
-#     # Setup database connection
-#     db = MySQL_Database()
-#
-#     #Gets list of all orders associated with a given customer id
-#     #order_list = db.query('SELECT * FROM orders WHERE orders.Customer_ID = %s', [user_id])
-#     order_list = db.query('SELECT orders.order_ID, customer.FullName, stock.Ingredient_Name FROM orders JOIN order_details ON orders.Order_ID = order_details.Order_ID JOIN item_details ON order_details.Order_Details_ID = item_details.Order_Details_ID JOIN stock ON item_details.Stock_ID = stock.Stock_ID JOIN customer ON orders.Customer_ID = customer.Customer_ID WHERE orders.Customer_ID = %s', [user_id])
-#     if len(order_list) > 0:
-#         order_id = ""
-#         user_name = ""
-#         ingredients = ""
-#         display_list = [[]] for x in order_list:
-#
-#
-#             order_id = order_list[x]['Order_ID']
-#             user_name = order_list[x]['FullName']
-#             ingredients = ingredients + order_list[x]['Ingredient_Name'] + " "
-#
-#
-#
-#         return Response(json.dumps({"Customer Name": user_name, "Ingredients": ingredients}))
-#     else:
-#         return Response(json.dumps({"Customer": "Not found"}))
+@app.route('/order/list/<int:user_id>', methods=["GET"])
+def orderByCustomer(user_id):
+    # Setup database connection
+    db = MySQL_Database()
+
+    uberlist = []
+
+    # Gets the details of an order from a given order id
+    order_details = db.query(
+        'SELECT o.Order_ID, o.Customer_ID, o.DateTime, o.Status, od.Order_Details_ID, s.Stock_ID FROM orders AS o, order_details AS od, stock AS s, item_details AS id WHERE o.Customer_ID = %s AND od.Order_ID = o.Order_ID AND id.Order_Details_ID = od.Order_Details_ID AND id.Stock_ID = s.Stock_ID',
+        [user_id])
+
+    if order_details:
+        order_id = -1
+
+        for ingredient in order_details:
+
+            if ingredient["Order_ID"] != order_id:
+                if order_id != -1:
+                    print("Appending order")
+                    uberlist.append(jsondict)
+
+                order_id = ingredient["Order_ID"]
+
+                metadata = {}
+
+                for key in ingredient:
+                    metadata[key] = ingredient[key]
+
+                print(metadata)
+
+                jsondict = {"order_details_list": metadata}
+                stockdetails = {}
+
+                itemNumber = ingredient['Order_Details_ID']
+                stockdetails[str(itemNumber)] = []
+                stockdetails[str(itemNumber)].append(ingredient['Stock_ID'])
+                prev = itemNumber
+
+            else:
+                itemNumber = ingredient['Order_Details_ID']
+                if itemNumber != prev:
+                    jsondict["item_details_list"] = stockdetails
+                    stockdetails[str(itemNumber)] = []
+                    stockdetails[str(itemNumber)].append(ingredient['Stock_ID'])
+                    prev = itemNumber
+                else:
+                    stockdetails[str(itemNumber)].append(ingredient['Stock_ID'])
+
+        jsondict["item_details_list"] = stockdetails
+        uberlist.append(jsondict)
+
+        return Response(json.dumps(uberlist))
+
+    else:
+        return Response(json.dumps({'order_details_list': 'None'}))
+
+# @app.route('/test1', methods=["POST"])
+# def test1():
+
 
 if __name__ == '__main__':
     app.run()

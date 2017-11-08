@@ -14,3 +14,11 @@ SELECT orders.Order_ID, customer.FullName, stock.Ingredient_Name FROM orders JOI
 SELECT customer.FullName, stock.Ingredient_Name FROM orders JOIN order_details ON orders.Order_ID = order_details.Order_ID JOIN item_details ON order_details.Order_Details_ID = item_details.Order_Details_ID JOIN customer ON orders.Customer_ID = customer.Customer_ID WHERE orders.order_ID = 1
 
 SELECT o.Order_ID, o.Customer_ID, o.DateTime, o.Status, od.Order_Details_ID, s.Stock_ID FROM orders AS o, order_details AS od, stock AS s, item_details AS id WHERE o.Order_ID = 11 AND od.Order_ID = o.Order_ID AND id.Order_Details_ID = od.Order_Details_ID AND id.Stock_ID = s.Stock_ID;
+
+SELECT MIN(Order_ID) FROM Orders
+
+SELECT Order_ID from orders where Customer_ID = 1 order by DateTime DESC
+
+SELECT o.Order_ID, o.Customer_ID, o.DateTime, o.Status, od.Order_Details_ID, s.Stock_ID FROM orders AS o, order_details AS od, stock AS s, item_details AS id WHERE o.Customer_ID = 1 AND od.Order_ID = o.Order_ID AND id.Order_Details_ID = od.Order_Details_ID AND id.Stock_ID = s.Stock_ID
+
+SELECT orders.Order_ID, orders.Customer_ID, orders.DateTime, orders.Status, order_details.Order_Details_ID, stock.Stock_ID FROM orders JOIN order_details ON orders.Order_ID = order_details.Order_ID JOIN item_details ON order_details.Order_Details_ID = item_details.Order_Details_ID JOIN stock ON
