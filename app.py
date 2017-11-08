@@ -266,7 +266,18 @@ def getStaffByUsername(username):
     db = MySQL_Database()
     staff_details = db.query('SELECT * FROM staff WHERE Username = %s', [username])
 
-    if len(staff_details) > 0:
+    if staff_details:
+        return Response(json.dumps({'Staff details': staff_details}))
+    else:
+        return Response(json.dumps({'Staff': 'Staff member not found.'}))
+
+
+@app.route('/staff/email/<email>')
+def getStaffByEmail(email):
+    db = MySQL_Database()
+    staff_details = db.query('SELECT * FROM staff WHERE Email = %s', [email])
+
+    if staff_details:
         return Response(json.dumps({'Staff details': staff_details}))
     else:
         return Response(json.dumps({'Staff': 'Staff member not found.'}))
@@ -277,17 +288,17 @@ def getStaffById(staff_id):
     db = MySQL_Database()
     staff_details = db.query('SELECT * FROM staff WHERE Staff_ID = %s', [staff_id])
 
-    if len(staff_details) > 0:
+    if staff_details:
         return Response(json.dumps({'Staff details': staff_details}))
     else:
         return Response(json.dumps({'Staff': 'Staff member not found.'}))
 
-@app.route('/staff/staff_type/<staff_type_id>')
-def getStaffByType(staff_type_id):
+@app.route('/staff/staff_type/<staff_type>')
+def getStaffByType(staff_type):
     db = MySQL_Database()
-    staff = db.query('SELECT * FROM staff WHERE Staff_Type_ID = %s', [staff_type_id])
+    staff = db.query('SELECT s.Staff_ID, s.Username, s.Iterations, s.Salt, s.PassHash FROM staff AS s, staff_type AS st WHERE s.Staff_Type_ID = st.Staff_Type_ID AND Staff_Type = %s', [staff_type])
 
-    if len(staff) > 0:
+    if staff:
         return Response(json.dumps(staff))
     else:
         return Response(json.dumps({'Staff': 'Void'}))
