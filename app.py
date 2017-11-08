@@ -1,4 +1,4 @@
-from flask import Flask, url_for, json, Response
+from flask import Flask, url_for, json, Response, request, jsonify
 from mysql_db import MySQL_Database
 import os
 import datetime
@@ -78,13 +78,13 @@ def customer_by_user_id(user_id):
 @app.route('/order/add/<int:customer_id>')
 def addOrder(customer_id):
 
-    order_details_list = [[11, 41, 51, 61, 81, 101, 111, 141, 191],[341],[371],[411]]
+    order_details_list = [[1, 41, 51, 61, 81, 101, 111, 141, 191],[341],[371],[411]]
 
     # Setup database connection
     db = MySQL_Database()
 
     # Create an Order entry in the database
-    order_info = db.insert('INSERT INTO ORDERS (orders.Customer_ID, DateTime, Status) VALUES (%s, LOCALTIME(),%s)', [customer_id, 0])
+    order_info = db.insertAndLeaveOpen('INSERT INTO ORDERS (orders.Customer_ID, DateTime, Status) VALUES (%s, LOCALTIME(),%s)', [customer_id, 0])
 
     # Get the Order_ID from the database
     # db = MySQL_Database()
@@ -93,8 +93,7 @@ def addOrder(customer_id):
     # print(order_ID_var)
 
     # Create an Order_Details entry in the database
-    db = MySQL_Database()
-    for x in order_details_list:
+    for item in order_details_list:
         order_details = db.insertAndLeaveOpen('INSERT INTO order_details (Order_ID) SELECT Order_ID FROM orders WHERE Customer_ID = (%s) ORDER BY DateTime DESC LIMIT 1', [customer_id])
 
         # Get the Order_Details_ID from the database
@@ -103,13 +102,13 @@ def addOrder(customer_id):
         # order_Details_ID_var = order_Details_ID_list[0]["MAX(Order_Details_ID)"];
 
         # Create an Item_Details entry in the database
-        for y in x:
-            item_details = db.insertAndLeaveOpen('INSERT INTO item_details (Order_Details_ID, Stock_ID) VALUES ((SELECT MAX(Order_Details_ID) FROM order_details WHERE Order_ID = (SELECT Order_ID FROM orders WHERE Customer_ID = (%s) ORDER BY DateTime DESC LIMIT 1)), %s)', [customer_id, y])
+        for ingredient in item:
+            item_details = db.insertAndLeaveOpen('INSERT INTO item_details (Order_Details_ID, Stock_ID) VALUES ((SELECT MAX(Order_Details_ID) FROM order_details WHERE Order_ID = (SELECT Order_ID FROM orders WHERE Customer_ID = (%s) ORDER BY DateTime DESC LIMIT 1)), %s)', [customer_id, ingredient])
 
-            updateIngredients = db.insertAndLeaveOpen('UPDATE stock SET Stock_Level = Stock_Level-1 where Stock_ID = %s', [y])
+            updateIngredients = db.insertAndLeaveOpen('UPDATE stock SET Stock_Level = Stock_Level-1 where Stock_ID = %s', [ingredient])
             if updateIngredients is None:
-                updateStatus = db.insertAndLeaveOpen('UPDATE orders SET status = 3 WHERE Order_ID = (SELECT Order_ID FROM orders WHERE Customer_ID = (%s) ORDER BY DateTime DESC LIMIT 1)')
-                return Response(json.dumps({"Insufficient Ingredients": y}))
+                updateStatus = db.insertAndLeaveOpen('DELETE FROM orders WHERE Order_ID = (SELECT o.Order_ID FROM (SELECT * FROM orders) AS o WHERE Customer_ID = %s ORDER BY DateTime DESC LIMIT 1)', [customer_id])
+                return Response(json.dumps({"Insufficient Ingredients": ingredient}))
 
     db.check_and_close_connection()
 
@@ -265,9 +264,12 @@ def orderByCustomer(user_id):
     else:
         return Response(json.dumps({'order_details_list': 'None'}))
 
-# @app.route('/test1', methods=["POST"])
-# def test1():
+@app.route('/customer/add', methods=["POST"])
+def addCustomer():
+    json = request.get_json(silent=True)
+    print(json)
 
+    return Response(json.dumps(json))
 
 if __name__ == '__main__':
     app.run()
