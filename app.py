@@ -204,6 +204,8 @@ def orderById(order_id):
     else:
         return Response(json.dumps({'order_details_list': 'no_order'}))
 
+
+# Reviewed and tested by JUL
 @app.route('/order/list/<int:user_id>', methods=["GET"])
 def orderByCustomer(user_id):
     # Setup database connection
@@ -292,11 +294,12 @@ def getStaffByType(staff_type):
     staff_details = db.query('SELECT s.Staff_ID, s.Username, s.Iterations, s.Salt, s.PassHash, st.Staff_Type FROM staff AS s, staff_type AS st WHERE s.Staff_Type_ID = st.Staff_Type_ID AND st.Staff_Type = %s', [staff_type])
 
     if staff_details:
-        return Response(json.dumps(staff_details[0]))
+        return Response(json.dumps(staff_details))
     else:
         return Response(json.dumps({'Staff_ID': 'Void'}))
 
 
+# Reviewed and tested by JUL
 @app.route('/staff/add', methods=["POST"])
 def addStaff():
     staff_json = request.get_json(silent=True)
