@@ -268,9 +268,9 @@ def getStaffByUsername(username):
     staff_details = db.query('SELECT s.Staff_ID, s.Username, s.Iterations, s.Salt, s.PassHash, st.Staff_Type FROM staff AS s, staff_type AS st WHERE s.Staff_Type_ID = st.Staff_Type_ID AND s.Username = %s', [username])
 
     if staff_details:
-        return Response(json.dumps({'Staff details': staff_details[0]}))
+        return Response(json.dumps(staff_details[0]))
     else:
-        return Response(json.dumps({'Staff': 'Staff member not found.'}))
+        return Response(json.dumps({'Staff_ID': 'Void'}))
 
 
 # Checked by JUL
@@ -280,21 +280,21 @@ def getStaffById(staff_id):
     staff_details = db.query('SELECT s.Staff_ID, s.Username, s.Iterations, s.Salt, s.PassHash, st.Staff_Type FROM staff AS s, staff_type AS st WHERE s.Staff_Type_ID = st.Staff_Type_ID AND s.Staff_ID = %s', [staff_id])
 
     if staff_details:
-        return Response(json.dumps({'Staff details': staff_details[0]}))
+        return Response(json.dumps(staff_details[0]))
     else:
-        return Response(json.dumps({'Staff': 'Staff member not found.'}))
+        return Response(json.dumps({'Staff_ID': 'Void'}))
 
 
 # Checked by JUL
 @app.route('/staff/staff_type/<staff_type>')
 def getStaffByType(staff_type):
     db = MySQL_Database()
-    staff = db.query('SELECT s.Staff_ID, s.Username, s.Iterations, s.Salt, s.PassHash, st.Staff_Type FROM staff AS s, staff_type AS st WHERE s.Staff_Type_ID = st.Staff_Type_ID AND st.Staff_Type = %s', [staff_type])
+    staff_details = db.query('SELECT s.Staff_ID, s.Username, s.Iterations, s.Salt, s.PassHash, st.Staff_Type FROM staff AS s, staff_type AS st WHERE s.Staff_Type_ID = st.Staff_Type_ID AND st.Staff_Type = %s', [staff_type])
 
-    if staff:
-        return Response(json.dumps(staff[0]))
+    if staff_details:
+        return Response(json.dumps(staff_details[0]))
     else:
-        return Response(json.dumps({'Staff': 'Void'}))
+        return Response(json.dumps({'Staff_ID': 'Void'}))
 
 
 @app.route('/staff/add', methods=["POST"])
