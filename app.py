@@ -261,10 +261,11 @@ def orderByCustomer(user_id):
     else:
         return Response(json.dumps({'order_details_list': 'None'}))
 
+# Checked by JUL
 @app.route('/staff/username/<username>')
 def getStaffByUsername(username):
     db = MySQL_Database()
-    staff_details = db.query('SELECT * FROM staff WHERE Username = %s', [username])
+    staff_details = db.query('SELECT s.Staff_ID, s.Username, s.Iterations, s.Salt, s.PassHash, st.Staff_Type FROM staff AS s, staff_type AS st WHERE s.Staff_Type_ID = st.Staff_Type_ID AND s.Username = %s', [username])
 
     if staff_details:
         return Response(json.dumps({'Staff details': staff_details}))
@@ -272,25 +273,29 @@ def getStaffByUsername(username):
         return Response(json.dumps({'Staff': 'Staff member not found.'}))
 
 
+# Checked by JUL
 @app.route('/staff/staff_id/<staff_id>')
 def getStaffById(staff_id):
     db = MySQL_Database()
-    staff_details = db.query('SELECT * FROM staff WHERE Staff_ID = %s', [staff_id])
+    staff_details = db.query('SELECT s.Staff_ID, s.Username, s.Iterations, s.Salt, s.PassHash, st.Staff_Type FROM staff AS s, staff_type AS st WHERE s.Staff_Type_ID = st.Staff_Type_ID AND s.Staff_ID = %s', [staff_id])
 
     if staff_details:
         return Response(json.dumps({'Staff details': staff_details}))
     else:
         return Response(json.dumps({'Staff': 'Staff member not found.'}))
 
+
+# Checked by JUL
 @app.route('/staff/staff_type/<staff_type>')
 def getStaffByType(staff_type):
     db = MySQL_Database()
-    staff = db.query('SELECT s.Staff_ID, s.Username, s.Iterations, s.Salt, s.PassHash FROM staff AS s, staff_type AS st WHERE s.Staff_Type_ID = st.Staff_Type_ID AND Staff_Type = %s', [staff_type])
+    staff = db.query('SELECT s.Staff_ID, s.Username, s.Iterations, s.Salt, s.PassHash, st.Staff_Type FROM staff AS s, staff_type AS st WHERE s.Staff_Type_ID = st.Staff_Type_ID AND st.Staff_Type = %s', [staff_type])
 
     if staff:
         return Response(json.dumps(staff))
     else:
         return Response(json.dumps({'Staff': 'Void'}))
+
 
 @app.route('/staff/add', methods=["POST"])
 def addStaff():
