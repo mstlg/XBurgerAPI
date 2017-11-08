@@ -86,20 +86,10 @@ def addOrder(customer_id):
     # Create an Order entry in the database
     order_info = db.insertAndLeaveOpen('INSERT INTO ORDERS (orders.Customer_ID, DateTime, Status) VALUES (%s, LOCALTIME(),%s)', [customer_id, 0])
 
-    # Get the Order_ID from the database
-    # db = MySQL_Database()
-    # order_ID_list =  db.query('SELECT Order_ID FROM orders WHERE Customer_ID = (%s) ORDER BY orders.DateTime', [customer_id])
-    # order_ID_var = order_ID_list[0]["Order_ID"]
-    # print(order_ID_var)
 
     # Create an Order_Details entry in the database
     for item in order_details_list:
         order_details = db.insertAndLeaveOpen('INSERT INTO order_details (Order_ID) SELECT Order_ID FROM orders WHERE Customer_ID = (%s) ORDER BY DateTime DESC LIMIT 1', [customer_id])
-
-        # Get the Order_Details_ID from the database
-        # db = MySQL_Database()
-        # order_Details_ID_list = db.query('SELECT MAX(Order_Details_ID) FROM order_details WHERE Order_ID = %s', [order_ID_var])
-        # order_Details_ID_var = order_Details_ID_list[0]["MAX(Order_Details_ID)"];
 
         # Create an Item_Details entry in the database
         for ingredient in item:
@@ -173,6 +163,7 @@ def ingredientByID(stock_id):
         return Response(json.dumps(stock_information))
     else:
         return Response(json.dumps({"Stock": "void"}))
+
 
 @app.route('/order/<int:order_id>', methods=["GET"])
 def orderById(order_id):
@@ -296,7 +287,7 @@ def getStaffByType(staff_type_id):
         return Response(json.dumps({'Staff': 'Void'}))
 
 @app.route('/staff/add', methods=["POST"])
-def getStaffByUsername(username):
+def addStaff():
     staff_json = request.get_json(silent=True)
 
     username = staff_json['Username']
