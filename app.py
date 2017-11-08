@@ -264,6 +264,55 @@ def orderByCustomer(user_id):
     else:
         return Response(json.dumps({'order_details_list': 'None'}))
 
+@app.route('/staff/username/<username>')
+def getStaffByUsername(username):
+    db = MySQL_Database()
+    staff_details = db.query('SELECT * FROM staff WHERE Username = %s', [username])
+
+    if len(staff_details) > 0:
+        return Response(json.dumps({'Staff details': staff_details}))
+    else:
+        return Response(json.dumps({'Staff': 'Staff member not found.'}))
+
+
+@app.route('/staff/staff_id/<staff_id>')
+def getStaffById(staff_id):
+    db = MySQL_Database()
+    staff_details = db.query('SELECT * FROM staff WHERE Staff_ID = %s', [staff_id])
+
+    if len(staff_details) > 0:
+        return Response(json.dumps({'Staff details': staff_details}))
+    else:
+        return Response(json.dumps({'Staff': 'Staff member not found.'}))
+
+@app.route('/staff/staff_type/<staff_type_id>')
+def getStaffByType(staff_type_id):
+    db = MySQL_Database()
+    staff = db.query('SELECT * FROM staff WHERE Staff_Type_ID = %s', [staff_type_id])
+
+    if len(staff) > 0:
+        return Response(json.dumps(staff))
+    else:
+        return Response(json.dumps({'Staff': 'Void'}))
+
+@app.route('/staff/add', methods=["POST"])
+def getStaffByUsername(username):
+    staff_json = request.get_json(silent=True)
+
+    username = staff_json['Username']
+    stafftype = staff_json['Staff_Type']
+    iterations = staff_json['Iterations']
+    salt = staff_json['Salt']
+    password = staff_json['PassHash']
+
+    db = MySQL_Database()
+    insertion_status = db.insert('INSERT INTO staff(Username, Staff_Type_ID, Iterations, Salt, PassHash) VALUES (%s, %s, %s, %s, %s)', [username, stafftype, iterations, salt, password])
+
+    if insertion_status:
+        return Response(json.dumps({'Staff member': 'Added'}))
+    else:
+        return Response(json.dumps({'Staff member': 'Addition failed'}))
+
 @app.route('/customer/add', methods=["POST"])
 def addCustomer():
     customer_json = request.get_json(silent=True)
@@ -285,6 +334,21 @@ def addCustomer():
         return Response(json.dumps({'Customer' : 'Added'}))
     else:
         return  Response(json.dumps({'Customer' : 'Addition failed'}))
+
+@app.route('/ingredient/restock', methods=["POST"])
+def restockIngredient():
+    ingredient_json = request.get_json(silent=True)
+
+    stock_id = ingredient_json['stock_ID']
+    restock_amount = ingredient_json['amount']
+
+    db = MySQL_Database()
+    update_status = db.update('UPDATE Stock SET Stock_Level = Stock_Level + %s WHERE Stock_ID = %s', [restock_amount, stock_id])
+
+    if update_status:
+        return Response(json.dumps({'Stock': 'Updated'}))
+    else:
+        return Response(json.dumps({'Stock': 'Update failed'}))
 
 if __name__ == '__main__':
     app.run()
