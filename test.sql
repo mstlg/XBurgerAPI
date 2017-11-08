@@ -24,3 +24,7 @@ SELECT o.Order_ID, o.Customer_ID, o.DateTime, o.Status, od.Order_Details_ID, s.S
 SELECT orders.Order_ID, orders.Customer_ID, orders.DateTime, orders.Status, order_details.Order_Details_ID, stock.Stock_ID FROM orders JOIN order_details ON orders.Order_ID = order_details.Order_ID JOIN item_details ON order_details.Order_Details_ID = item_details.Order_Details_ID JOIN stock ON
 
 DELETE FROM orders WHERE Order_ID = (SELECT o.Order_ID FROM (SELECT * FROM orders) AS o WHERE Customer_ID = 1 ORDER BY DateTime DESC LIMIT 1);
+
+SELECT * FROM staff WHERE Staff_Type_ID = 1
+
+UPDATE stock SET Stock_Level = Stock_Level + 1 WHERE Stock_ID = 1
