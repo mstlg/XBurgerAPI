@@ -175,31 +175,34 @@ def orderById(order_id):
 
     metadata = {}
 
-    if order_details is None:
-        return Response(json.dumps({'order_details_list' : 'no_order'}))
+    print(order_details)
 
-    for key in order_details[0]:
-        metadata[key] = order_details[0][key]
+    if order_details:
 
-    print(metadata)
+        for key in order_details[0]:
+            metadata[key] = order_details[0][key]
 
-    jsondict = {"order_details_list": metadata}
-    stockdetails = {}
+        print(metadata)
 
-    prev = -1
-    for x in order_details:
-        itemNumber = x['Order_Details_ID']
-        if itemNumber != prev:
+        jsondict = {"order_details_list": metadata}
+        stockdetails = {}
 
-            stockdetails[str(itemNumber)] = []
-            stockdetails[str(itemNumber)].append(x['Stock_ID'])
-            prev = itemNumber
-        else:
-            stockdetails[str(itemNumber)].append(x['Stock_ID'])
+        prev = -1
+        for x in order_details:
+            itemNumber = x['Order_Details_ID']
+            if itemNumber != prev:
 
-    jsondict["item_details_list"] = stockdetails
+                stockdetails[str(itemNumber)] = []
+                stockdetails[str(itemNumber)].append(x['Stock_ID'])
+                prev = itemNumber
+            else:
+                stockdetails[str(itemNumber)].append(x['Stock_ID'])
 
-    return Response(json.dumps(jsondict))
+        jsondict["item_details_list"] = stockdetails
+
+        return Response(json.dumps(jsondict))
+    else:
+        return Response(json.dumps({'order_details_list': 'no_order'}))
 
 @app.route('/order/list/<int:user_id>', methods=["GET"])
 def orderByCustomer(user_id):
