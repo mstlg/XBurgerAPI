@@ -266,12 +266,25 @@ def orderByCustomer(user_id):
 
 @app.route('/customer/add', methods=["POST"])
 def addCustomer():
-    json_object = request.get_json(silent=True)
-    print(json_object)
+    customer_json = request.get_json(silent=True)
+    # print(json_object)
 
-    username = json_object['Username']
+    username = customer_json['Username']
+    email = customer_json['Email']
+    phone = customer_json['Phone_Number']
+    iterations = customer_json['Iterations']
+    salt = customer_json['Salt']
+    password = customer_json['PassHash']
+    passpin = customer_json['PassPin']
+    cardtoken = customer_json['Card_Token']
 
-    return Response(json.dumps({'username' : username}))
+    db = MySQL_Database()
+    insertion_status = db.insert('INSERT INTO Customer(Username, Email, Phone_Number, Iterations, Salt, PassHash) VALUES (%s, %s, %s, %s, %s, %s)', [username, email, phone, iterations, salt, password])
+
+    if insertion_status:
+        return Response(json.dumps({'Customer' : 'Added'}))
+    else:
+        return  Response(json.dumps({'Customer' : 'Addition failed'}))
 
 if __name__ == '__main__':
     app.run()
