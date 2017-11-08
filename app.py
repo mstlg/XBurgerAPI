@@ -266,10 +266,10 @@ def orderByCustomer(user_id):
 
 @app.route('/customer/add', methods=["POST"])
 def addCustomer():
-    json = request.get_json(silent=True)
-    print(json)
+    json_object = request.get_json(silent=True)
+    print(json_object)
 
-    username = json['Username']
+    username = json_object['Username']
 
     return Response(json.dumps({'username' : username}))
 
