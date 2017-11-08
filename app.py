@@ -308,7 +308,7 @@ def addStaff():
     password = staff_json['PassHash']
 
     db = MySQL_Database()
-    insertion_status = db.insert('INSERT INTO staff(Username, Staff_Type_ID, Iterations, Salt, PassHash) VALUES (%s, %s, %s, %s, %s)', [username, stafftype, iterations, salt, password])
+    insertion_status = db.insertAndLeaveOpen('INSERT INTO staff(Username, Staff_Type_ID, Iterations, Salt, PassHash) VALUES (%s, %s, %s, %s, %s)', [username, stafftype, iterations, salt, password])
 
     if insertion_status:
         return Response(json.dumps({'Staff member': 'Added'}))
@@ -330,7 +330,7 @@ def addCustomer():
     cardtoken = customer_json['Card_Token']
 
     db = MySQL_Database()
-    insertion_status = db.insert('INSERT INTO Customer(Username, Email, Phone_Number, Iterations, Salt, PassHash) VALUES (%s, %s, %s, %s, %s, %s)', [username, email, phone, iterations, salt, password])
+    insertion_status = db.insertAndLeaveOpen('INSERT INTO Customer(Username, Email, Phone_Number, Iterations, Salt, PassHash) VALUES (%s, %s, %s, %s, %s, %s)', [username, email, phone, iterations, salt, password])
 
     if insertion_status:
         return Response(json.dumps({'Customer' : 'Added'}))
