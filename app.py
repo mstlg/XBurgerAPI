@@ -78,7 +78,7 @@ def customer_by_user_id(user_id):
 @app.route('/order/add/<int:customer_id>')
 def addOrder(customer_id):
 
-    order_details_list = [[1, 41, 51, 61, 81, 101, 111, 141, 191],[341],[371],[411]]
+    order_details_list = [[11, 41, 51, 61, 81, 101, 111, 141, 191],[341],[371],[411]]
 
     # Setup database connection
     db = MySQL_Database()
@@ -269,7 +269,9 @@ def addCustomer():
     json = request.get_json(silent=True)
     print(json)
 
-    return Response(json.dumps(json))
+    username = json['Username']
+
+    return Response(json.dumps({'username' : username}))
 
 if __name__ == '__main__':
     app.run()
