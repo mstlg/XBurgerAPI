@@ -86,20 +86,10 @@ def addOrder(customer_id):
     # Create an Order entry in the database
     order_info = db.insertAndLeaveOpen('INSERT INTO ORDERS (orders.Customer_ID, DateTime, Status) VALUES (%s, LOCALTIME(),%s)', [customer_id, 0])
 
-    # Get the Order_ID from the database
-    # db = MySQL_Database()
-    # order_ID_list =  db.query('SELECT Order_ID FROM orders WHERE Customer_ID = (%s) ORDER BY orders.DateTime', [customer_id])
-    # order_ID_var = order_ID_list[0]["Order_ID"]
-    # print(order_ID_var)
 
     # Create an Order_Details entry in the database
     for item in order_details_list:
         order_details = db.insertAndLeaveOpen('INSERT INTO order_details (Order_ID) SELECT Order_ID FROM orders WHERE Customer_ID = (%s) ORDER BY DateTime DESC LIMIT 1', [customer_id])
-
-        # Get the Order_Details_ID from the database
-        # db = MySQL_Database()
-        # order_Details_ID_list = db.query('SELECT MAX(Order_Details_ID) FROM order_details WHERE Order_ID = %s', [order_ID_var])
-        # order_Details_ID_var = order_Details_ID_list[0]["MAX(Order_Details_ID)"];
 
         # Create an Item_Details entry in the database
         for ingredient in item:
@@ -174,6 +164,7 @@ def ingredientByID(stock_id):
     else:
         return Response(json.dumps({"Stock": "void"}))
 
+
 @app.route('/order/<int:order_id>', methods=["GET"])
 def orderById(order_id):
     # Setup database connection
@@ -184,29 +175,37 @@ def orderById(order_id):
 
     metadata = {}
 
-    for key in order_details[0]:
-        metadata[key] = order_details[0][key]
+    print(order_details)
 
-    print(metadata)
+    if order_details:
 
-    jsondict = {"order_details_list": metadata}
-    stockdetails = {}
+        for key in order_details[0]:
+            metadata[key] = order_details[0][key]
 
-    prev = -1
-    for x in order_details:
-        itemNumber = x['Order_Details_ID']
-        if itemNumber != prev:
+        print(metadata)
 
-            stockdetails[str(itemNumber)] = []
-            stockdetails[str(itemNumber)].append(x['Stock_ID'])
-            prev = itemNumber
-        else:
-            stockdetails[str(itemNumber)].append(x['Stock_ID'])
+        jsondict = {"order_details_list": metadata}
+        stockdetails = {}
 
-    jsondict["item_details_list"] = stockdetails
+        prev = -1
+        for x in order_details:
+            itemNumber = x['Order_Details_ID']
+            if itemNumber != prev:
 
-    return Response(json.dumps(jsondict))
+                stockdetails[str(itemNumber)] = []
+                stockdetails[str(itemNumber)].append(x['Stock_ID'])
+                prev = itemNumber
+            else:
+                stockdetails[str(itemNumber)].append(x['Stock_ID'])
 
+        jsondict["item_details_list"] = stockdetails
+
+        return Response(json.dumps(jsondict))
+    else:
+        return Response(json.dumps({'order_details_list': 'no_order'}))
+
+
+# Reviewed and tested by JUL
 @app.route('/order/list/<int:user_id>', methods=["GET"])
 def orderByCustomer(user_id):
     # Setup database connection
@@ -264,39 +263,45 @@ def orderByCustomer(user_id):
     else:
         return Response(json.dumps({'order_details_list': 'None'}))
 
+# Checked by JUL
 @app.route('/staff/username/<username>')
 def getStaffByUsername(username):
     db = MySQL_Database()
-    staff_details = db.query('SELECT * FROM staff WHERE Username = %s', [username])
+    staff_details = db.query('SELECT s.Staff_ID, s.Username, s.Iterations, s.Salt, s.PassHash, st.Staff_Type FROM staff AS s, staff_type AS st WHERE s.Staff_Type_ID = st.Staff_Type_ID AND s.Username = %s', [username])
 
-    if len(staff_details) > 0:
-        return Response(json.dumps({'Staff details': staff_details}))
+    if staff_details:
+        return Response(json.dumps(staff_details[0]))
     else:
-        return Response(json.dumps({'Staff': 'Staff member not found.'}))
+        return Response(json.dumps({'Staff_ID': 'Void'}))
 
 
+# Checked by JUL
 @app.route('/staff/staff_id/<staff_id>')
 def getStaffById(staff_id):
     db = MySQL_Database()
-    staff_details = db.query('SELECT * FROM staff WHERE Staff_ID = %s', [staff_id])
+    staff_details = db.query('SELECT s.Staff_ID, s.Username, s.Iterations, s.Salt, s.PassHash, st.Staff_Type FROM staff AS s, staff_type AS st WHERE s.Staff_Type_ID = st.Staff_Type_ID AND s.Staff_ID = %s', [staff_id])
 
-    if len(staff_details) > 0:
-        return Response(json.dumps({'Staff details': staff_details}))
+    if staff_details:
+        return Response(json.dumps(staff_details[0]))
     else:
-        return Response(json.dumps({'Staff': 'Staff member not found.'}))
+        return Response(json.dumps({'Staff_ID': 'Void'}))
 
-@app.route('/staff/staff_type/<staff_type_id>')
-def getStaffByType(staff_type_id):
+
+# Checked by JUL
+@app.route('/staff/staff_type/<staff_type>')
+def getStaffByType(staff_type):
     db = MySQL_Database()
-    staff = db.query('SELECT * FROM staff WHERE Staff_Type_ID = %s', [staff_type_id])
+    staff_details = db.query('SELECT s.Staff_ID, s.Username, s.Iterations, s.Salt, s.PassHash, st.Staff_Type FROM staff AS s, staff_type AS st WHERE s.Staff_Type_ID = st.Staff_Type_ID AND st.Staff_Type = %s', [staff_type])
 
-    if len(staff) > 0:
-        return Response(json.dumps(staff))
+    if staff_details:
+        return Response(json.dumps(staff_details))
     else:
-        return Response(json.dumps({'Staff': 'Void'}))
+        return Response(json.dumps({'Staff_ID': 'Void'}))
 
+
+# Reviewed and tested by JUL
 @app.route('/staff/add', methods=["POST"])
-def getStaffByUsername(username):
+def addStaff():
     staff_json = request.get_json(silent=True)
 
     username = staff_json['Username']
@@ -306,7 +311,7 @@ def getStaffByUsername(username):
     password = staff_json['PassHash']
 
     db = MySQL_Database()
-    insertion_status = db.insert('INSERT INTO staff(Username, Staff_Type_ID, Iterations, Salt, PassHash) VALUES (%s, %s, %s, %s, %s)', [username, stafftype, iterations, salt, password])
+    insertion_status = db.insertAndLeaveOpen('INSERT INTO staff(Username, Staff_Type_ID, Iterations, Salt, PassHash) VALUES (%s, %s, %s, %s, %s)', [username, stafftype, iterations, salt, password])
 
     if insertion_status:
         return Response(json.dumps({'Staff member': 'Added'}))
@@ -328,7 +333,7 @@ def addCustomer():
     cardtoken = customer_json['Card_Token']
 
     db = MySQL_Database()
-    insertion_status = db.insert('INSERT INTO Customer(Username, Email, Phone_Number, Iterations, Salt, PassHash) VALUES (%s, %s, %s, %s, %s, %s)', [username, email, phone, iterations, salt, password])
+    insertion_status = db.insertAndLeaveOpen('INSERT INTO Customer(Username, Email, Phone_Number, Iterations, Salt, PassHash) VALUES (%s, %s, %s, %s, %s, %s)', [username, email, phone, iterations, salt, password])
 
     if insertion_status:
         return Response(json.dumps({'Customer' : 'Added'}))
