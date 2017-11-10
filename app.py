@@ -202,7 +202,7 @@ def orderById(order_id):
 
         return Response(json.dumps(jsondict))
     else:
-        return Response(json.dumps({'order_details_list': 'no_order'}))
+        return Response(json.dumps({'item_details_list': 'no_order'}))
 
 
 # Reviewed and tested by JUL
