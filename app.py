@@ -75,10 +75,12 @@ def customer_by_user_id(user_id):
         return Response(json.dumps({"Customer_ID": "void"}))
 
 # Add order
-@app.route('/order/add/<int:customer_id>')
+@app.route('/order/add/<int:customer_id>', method=["POST"])
 def addOrder(customer_id):
 
-    order_details_list = [[11, 41, 51, 61, 81, 101, 111, 141, 191],[341],[371],[411]]
+    order_json = request.get_json(silent=True)
+
+    order_details_list = order_json["item_details_list"]
 
     # Setup database connection
     db = MySQL_Database()
