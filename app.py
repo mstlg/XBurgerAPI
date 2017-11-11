@@ -78,6 +78,8 @@ def customer_by_user_id(user_id):
 @app.route('/order/add/<int:customer_id>', method=["POST"])
 def addOrder(customer_id):
 
+    print("test")
+
     order_json = request.get_json(silent=True)
 
     order_details_list = order_json["item_details_list"]
