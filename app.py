@@ -75,7 +75,7 @@ def customer_by_user_id(user_id):
         return Response(json.dumps({"Customer_ID": "void"}))
 
 # Add order
-@app.route('/order/add/<int:customer_id>', method=["POST"])
+@app.route('/order/add/<int:customer_id>', methods=["POST"])
 def addOrder(customer_id):
 
     print("test")
