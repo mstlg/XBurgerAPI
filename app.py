@@ -123,6 +123,7 @@ def allIngredients():
     else:
         return Response(json.dumps({"Stock": "void"}))
 
+# Java access provided
 @app.route('/ingredients/available', methods=["GET"])
 def availableIngredients():
     # Setup database connection
@@ -138,6 +139,7 @@ def availableIngredients():
     else:
         return Response(json.dumps({"Stock": "void"}))
 
+# Java access provided
 @app.route('/ingredients/<stock_name>', methods=["GET"])
 def ingredientByName(stock_name):
     # Setup database connection
@@ -153,6 +155,7 @@ def ingredientByName(stock_name):
     else:
         return Response(json.dumps({"Stock": "void"}))
 
+# Java access provided
 @app.route('/ingredients/<int:stock_id>', methods=["GET"])
 def ingredientByID(stock_id):
     # Setup database connection
@@ -344,7 +347,7 @@ def addCustomer():
     else:
         return  Response(json.dumps({'Customer' : 'Addition failed'}))
 
-# Java implementation required
+# Java implementation completed
 @app.route('/ingredients/restock', methods=["POST"])
 def restockIngredient():
     ingredient_json = request.get_json(silent=True)
