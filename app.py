@@ -215,7 +215,7 @@ def orderById(order_id):
 
 
 # Java access TO DO
-@app.route('/order/list/<int:user_id>', methods=["GET"])
+@app.route('/order/list/customer/<int:user_id>', methods=["GET"])
 def orderByCustomer(user_id):
     # Setup database connection
     db = MySQL_Database()
@@ -285,6 +285,63 @@ def orderByStaff(staff_id):
     order_details = db.query(
         'SELECT o.Order_ID, o.Staff_ID, o.DateTime, o.Status, od.Order_Details_ID, s.Stock_ID FROM orders AS o, order_details AS od, stock AS s, item_details AS id WHERE o.Staff_ID = %s AND od.Order_ID = o.Order_ID AND id.Order_Details_ID = od.Order_Details_ID AND id.Stock_ID = s.Stock_ID',
         [staff_id])
+
+    if order_details:
+        order_id = -1
+
+        for ingredient in order_details:
+
+            if ingredient["Order_ID"] != order_id:
+                if order_id != -1:
+                    print("Appending order")
+                    uberlist.append(jsondict)
+
+                order_id = ingredient["Order_ID"]
+
+                metadata = {}
+
+                for key in ingredient:
+                    metadata[key] = ingredient[key]
+
+                print(metadata)
+
+                jsondict = {"order_details_list": metadata}
+                stockdetails = {}
+
+                itemNumber = ingredient['Order_Details_ID']
+                stockdetails[str(itemNumber)] = []
+                stockdetails[str(itemNumber)].append(ingredient['Stock_ID'])
+                prev = itemNumber
+
+            else:
+                itemNumber = ingredient['Order_Details_ID']
+                if itemNumber != prev:
+                    jsondict["item_details_list"] = stockdetails
+                    stockdetails[str(itemNumber)] = []
+                    stockdetails[str(itemNumber)].append(ingredient['Stock_ID'])
+                    prev = itemNumber
+                else:
+                    stockdetails[str(itemNumber)].append(ingredient['Stock_ID'])
+
+        jsondict["item_details_list"] = stockdetails
+        uberlist.append(jsondict)
+
+        return Response(json.dumps(uberlist))
+
+    else:
+        return Response(json.dumps({'order_details_list': 'None'}))
+
+@app.route('/order/list/status/<int:order_status>', methods=["GET"])
+def orderByStatus(order_status):
+    # Setup database connection
+    db = MySQL_Database()
+
+    uberlist = []
+
+    # Gets the details of an order from a given order id
+    order_details = db.query(
+        'SELECT o.Order_ID, o.Customer_ID, o.DateTime, o.Status, od.Order_Details_ID, s.Stock_ID FROM orders AS o, order_details AS od, stock AS s, item_details AS id WHERE o.status = %s AND od.Order_ID = o.Order_ID AND id.Order_Details_ID = od.Order_Details_ID AND id.Stock_ID = s.Stock_ID',
+        [order_status])
 
     if order_details:
         order_id = -1
