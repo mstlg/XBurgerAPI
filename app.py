@@ -336,6 +336,10 @@ def orderByStatus(order_status):
     # Setup database connection
     db = MySQL_Database()
 
+    if order_status == 3:
+        print("Check for completed orders")
+        order_status = -1
+
     uberlist = []
 
     # Gets the details of an order from a given order id
