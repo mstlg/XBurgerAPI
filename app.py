@@ -25,7 +25,7 @@ def api_root():
 
 
 # Customer database access
-# By username
+# By username - java access provided
 @app.route('/customer/username/<username>', methods=["GET"])
 def customer_by_username(username):
     # Setup database connection
@@ -42,7 +42,7 @@ def customer_by_username(username):
         return Response(json.dumps({"Username": "void"}))
 
 
-# By email
+# By email - java access provided
 @app.route('/customer/email/<email>', methods=["GET"])
 def customer_by_email(email):
     # Setup database connection
@@ -58,7 +58,8 @@ def customer_by_email(email):
     else:
         return Response(json.dumps({"Username": "void"}))
 
-# By user_id
+
+# Java access provided
 @app.route('/customer/user_id/<int:user_id>', methods=["GET"])
 def customer_by_user_id(user_id):
     # Setup database connection
@@ -74,7 +75,7 @@ def customer_by_user_id(user_id):
     else:
         return Response(json.dumps({"Customer_ID": "void"}))
 
-# Add order
+# Java access provided
 @app.route('/order/add/<int:customer_id>', methods=["POST"])
 def addOrder(customer_id):
 
@@ -108,6 +109,7 @@ def addOrder(customer_id):
 
     return Response(json.dumps({"Order": "Added"}))
 
+# Java access provided
 @app.route('/ingredients/all', methods=["GET"])
 def allIngredients():
     # Setup database connection
@@ -171,7 +173,7 @@ def ingredientByID(stock_id):
     else:
         return Response(json.dumps({"Stock": "void"}))
 
-
+# Java access provided
 @app.route('/order/<int:order_id>', methods=["GET"])
 def orderById(order_id):
     # Setup database connection
@@ -212,7 +214,7 @@ def orderById(order_id):
         return Response(json.dumps({'item_details_list': 'no_order'}))
 
 
-# Reviewed and tested by JUL
+# Java access TO DO
 @app.route('/order/list/<int:user_id>', methods=["GET"])
 def orderByCustomer(user_id):
     # Setup database connection
@@ -270,7 +272,66 @@ def orderByCustomer(user_id):
     else:
         return Response(json.dumps({'order_details_list': 'None'}))
 
-# Checked by JUL
+
+# Java access TO DO
+@app.route('/order/list/staff/<int:staff_id>', methods=["GET"])
+def orderByStaff(staff_id):
+    # Setup database connection
+    db = MySQL_Database()
+
+    uberlist = []
+
+    # Gets the details of an order from a given order id
+    order_details = db.query(
+        'SELECT o.Order_ID, o.Staff_ID, o.DateTime, o.Status, od.Order_Details_ID, s.Stock_ID FROM orders AS o, order_details AS od, stock AS s, item_details AS id WHERE o.Staff_ID = %s AND od.Order_ID = o.Order_ID AND id.Order_Details_ID = od.Order_Details_ID AND id.Stock_ID = s.Stock_ID',
+        [staff_id])
+
+    if order_details:
+        order_id = -1
+
+        for ingredient in order_details:
+
+            if ingredient["Order_ID"] != order_id:
+                if order_id != -1:
+                    print("Appending order")
+                    uberlist.append(jsondict)
+
+                order_id = ingredient["Order_ID"]
+
+                metadata = {}
+
+                for key in ingredient:
+                    metadata[key] = ingredient[key]
+
+                print(metadata)
+
+                jsondict = {"order_details_list": metadata}
+                stockdetails = {}
+
+                itemNumber = ingredient['Order_Details_ID']
+                stockdetails[str(itemNumber)] = []
+                stockdetails[str(itemNumber)].append(ingredient['Stock_ID'])
+                prev = itemNumber
+
+            else:
+                itemNumber = ingredient['Order_Details_ID']
+                if itemNumber != prev:
+                    jsondict["item_details_list"] = stockdetails
+                    stockdetails[str(itemNumber)] = []
+                    stockdetails[str(itemNumber)].append(ingredient['Stock_ID'])
+                    prev = itemNumber
+                else:
+                    stockdetails[str(itemNumber)].append(ingredient['Stock_ID'])
+
+        jsondict["item_details_list"] = stockdetails
+        uberlist.append(jsondict)
+
+        return Response(json.dumps(uberlist))
+
+    else:
+        return Response(json.dumps({'order_details_list': 'None'}))
+
+# Java access provided
 @app.route('/staff/username/<username>')
 def getStaffByUsername(username):
     db = MySQL_Database()
@@ -282,7 +343,7 @@ def getStaffByUsername(username):
         return Response(json.dumps({'Staff_ID': 'Void'}))
 
 
-# Checked by JUL
+# Java access provided
 @app.route('/staff/staff_id/<staff_id>')
 def getStaffById(staff_id):
     db = MySQL_Database()
@@ -294,7 +355,7 @@ def getStaffById(staff_id):
         return Response(json.dumps({'Staff_ID': 'Void'}))
 
 
-# Checked by JUL
+# Java access provided
 @app.route('/staff/staff_type/<staff_type>')
 def getStaffByType(staff_type):
     db = MySQL_Database()
@@ -306,7 +367,7 @@ def getStaffByType(staff_type):
         return Response(json.dumps({'Staff_ID': 'Void'}))
 
 
-# Reviewed and tested by JUL
+# Java access provided
 @app.route('/staff/add', methods=["POST"])
 def addStaff():
     staff_json = request.get_json(silent=True)
@@ -325,7 +386,7 @@ def addStaff():
     else:
         return Response(json.dumps({'Staff member': 'Addition failed'}))
 
-# Customer addition - Tested JUL
+# Java access provided
 @app.route('/customer/add', methods=["POST"])
 def addCustomer():
     customer_json = request.get_json(silent=True)
@@ -347,7 +408,7 @@ def addCustomer():
     else:
         return  Response(json.dumps({'Customer' : 'Addition failed'}))
 
-# Java implementation completed
+# Java access provided
 @app.route('/ingredients/restock', methods=["POST"])
 def restockIngredient():
     ingredient_json = request.get_json(silent=True)
@@ -365,7 +426,7 @@ def restockIngredient():
 
 # Java implementation required
 @app.route("/order/assign", methods=["POST"])
-def assignOrderToStaff(order_id):
+def assignOrderToStaff():
 
     order_processing_json = request.get_json(silent=True)
 
