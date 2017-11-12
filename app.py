@@ -322,10 +322,10 @@ def addStaff():
     else:
         return Response(json.dumps({'Staff member': 'Addition failed'}))
 
+# Customer addition - Tested JUL
 @app.route('/customer/add', methods=["POST"])
 def addCustomer():
     customer_json = request.get_json(silent=True)
-    # print(json_object)
 
     username = customer_json['Username']
     email = customer_json['Email']
@@ -344,7 +344,8 @@ def addCustomer():
     else:
         return  Response(json.dumps({'Customer' : 'Addition failed'}))
 
-@app.route('/ingredient/restock', methods=["POST"])
+# Java implementation required
+@app.route('/ingredients/restock', methods=["POST"])
 def restockIngredient():
     ingredient_json = request.get_json(silent=True)
 
@@ -358,6 +359,36 @@ def restockIngredient():
         return Response(json.dumps({'Stock': 'Updated'}))
     else:
         return Response(json.dumps({'Stock': 'Update failed'}))
+
+# Java implementation required
+@app.route("/order/assign", methods=["POST"])
+def assignOrderToStaff(order_id):
+
+    order_processing_json = request.get_json(silent=True)
+
+    order_id = order_processing_json["order_ID"]
+    staff_id = order_processing_json["staff_ID"]
+
+    db = MySQL_Database()
+    update_status = db.update('UPDATE orders SET Staff_ID = %s, Status = 1 WHERE Order_ID = %s;', [staff_id, order_id])
+
+    if update_status:
+        return Response(json.dumps({'Order Status': 'Updated'}))
+    else:
+        return Response(json.dumps({'Order Status': 'Update Error'}))
+
+# Java implementation required
+@app.route("/order/complete/<int:order_id>")
+def completeOrder(order_id):
+
+    db = MySQL_Database()
+    update_status = db.update('UPDATE orders SET Status = 2 WHERE Order_ID = %s;', [order_id])
+
+    if update_status:
+        return Response(json.dumps({'Order Status': 'Completed'}))
+    else:
+        return Response(json.dumps({'Order Status': 'Update Error'}))
+
 
 if __name__ == '__main__':
     app.run()
