@@ -165,7 +165,7 @@ def ingredientByID(stock_id):
         return Response(json.dumps({"Stock": "void"}))
 
 
-@app.route('/order/<int:order_id>', methods=["GET"])
+@app.route('/order/order_id/<int:order_id>', methods=["GET"])
 def orderById(order_id):
     # Setup database connection
     db = MySQL_Database()
