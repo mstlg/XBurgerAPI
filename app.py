@@ -481,7 +481,7 @@ def restockIngredient():
     else:
         return Response(json.dumps({'Stock': 'Update failed'}))
 
-# Java implementation required
+# Java access provided
 @app.route("/order/assign", methods=["POST"])
 def assignOrderToStaff():
 
@@ -498,7 +498,7 @@ def assignOrderToStaff():
     else:
         return Response(json.dumps({'Order Status': 'Update Error'}))
 
-# Java implementation required
+# Java access provided
 @app.route("/order/complete/<int:order_id>")
 def completeOrder(order_id):
 
