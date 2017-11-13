@@ -148,7 +148,7 @@ def lowIngredients():
 
     # Gets list of all stock in the database
     stock_information = db.query('SELECT * FROM stock WHERE Stock_Level <= 5', [])
-    if len(stock_information) > 0:
+    if stock_information:
         for key, value in stock_information[0].items():
             if value is None:
                 stock_information[0][key] = ""
