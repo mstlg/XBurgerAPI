@@ -558,13 +558,6 @@
       <option name="presentableId" value="Default" />
       <updated>1509589461116</updated>
     </task>
-    <task id="LOCAL-00002" summary="API development">
-      <created>1509680937159</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1509680937159</updated>
-    </task>
     <task id="LOCAL-00003" summary="Customer by username query route added 04/11/2017">
       <created>1509763150108</created>
       <option name="number" value="00003" />
@@ -901,7 +894,14 @@
       <option name="project" value="LOCAL" />
       <updated>1510540365856</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Update to passpin and payment details route">
+      <created>1510541447512</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1510541447512</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="ToolWindowManager">
