@@ -657,7 +657,8 @@ def savePaymentDetails():
     print(token)
 
     db = MySQL_Database()
-    update = db.update('UPDATE customer SET PassPin = %s WHERE Customer_ID = %s;', [token, pin, customer_id])
+    update = db.insertAndLeaveOpen('UPDATE customer SET PassPin = %s WHERE Customer_ID = %s', [pin, customer_id])
+    update = db.insert('UPDATE customer SET Card_Token = %s WHERE Customer_ID = %s', [token, customer_id])
     if update:
         return Response(json.dumps({'Customer Details': 'Updated'}))
     else:
