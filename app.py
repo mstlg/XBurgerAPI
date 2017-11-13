@@ -672,7 +672,7 @@ def getToken(user_id):
     token = db.query('SELECT Card_Token FROM customer WHERE customer.Customer_ID = %s', [user_id])
 
     if token:
-        return Response(json.dumps(token))
+        return Response(json.dumps(token[0]))
     else:
         return Response(json.dumps({'Customer': 'void'}))
 
