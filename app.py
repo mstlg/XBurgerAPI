@@ -141,6 +141,21 @@ def availableIngredients():
     else:
         return Response(json.dumps({"Stock": "void"}))
 
+@app.route('/ingredients/pending_restock', methods=["GET"])
+def lowIngredients():
+    # Setup database connection
+    db = MySQL_Database()
+
+    # Gets list of all stock in the database
+    stock_information = db.query('SELECT * FROM stock WHERE Stock_Level <= 5', [])
+    if len(stock_information) > 0:
+        for key, value in stock_information[0].items():
+            if value is None:
+                stock_information[0][key] = ""
+        return Response(json.dumps(stock_information))
+    else:
+        return Response(json.dumps({"Stock": "void"}))
+
 # Java access provided
 @app.route('/ingredients/<stock_name>', methods=["GET"])
 def ingredientByName(stock_name):
@@ -330,6 +345,121 @@ def orderByStaff(staff_id):
 
     else:
         return Response(json.dumps({'order_details_list': 'None'}))
+
+@app.route('/order/list/all', methods=["GET"])
+def allOrders():
+    # Setup database connection
+    db = MySQL_Database()
+
+    uberlist = []
+
+    # Gets the details of an order from a given order id
+    order_details = db.query(
+        'SELECT o.Order_ID, o.Customer_ID, o.DateTime, o.Status, od.Order_Details_ID, s.Stock_ID FROM orders AS o, order_details AS od, stock AS s, item_details AS id WHERE od.Order_ID = o.Order_ID AND id.Order_Details_ID = od.Order_Details_ID AND id.Stock_ID = s.Stock_ID',
+        [])
+
+    if order_details:
+        order_id = -1
+
+        for ingredient in order_details:
+
+            if ingredient["Order_ID"] != order_id:
+                if order_id != -1:
+                    print("Appending order")
+                    uberlist.append(jsondict)
+
+                order_id = ingredient["Order_ID"]
+
+                metadata = {}
+
+                for key in ingredient:
+                    metadata[key] = ingredient[key]
+
+                print(metadata)
+
+                jsondict = {"order_details_list": metadata}
+                stockdetails = {}
+
+                itemNumber = ingredient['Order_Details_ID']
+                stockdetails[str(itemNumber)] = []
+                stockdetails[str(itemNumber)].append(ingredient['Stock_ID'])
+                prev = itemNumber
+
+            else:
+                itemNumber = ingredient['Order_Details_ID']
+                if itemNumber != prev:
+                    jsondict["item_details_list"] = stockdetails
+                    stockdetails[str(itemNumber)] = []
+                    stockdetails[str(itemNumber)].append(ingredient['Stock_ID'])
+                    prev = itemNumber
+                else:
+                    stockdetails[str(itemNumber)].append(ingredient['Stock_ID'])
+
+        jsondict["item_details_list"] = stockdetails
+        uberlist.append(jsondict)
+
+        return Response(json.dumps(uberlist))
+
+    else:
+        return Response(json.dumps({'order_details_list': 'None'}))
+
+@app.route('/order/list/recent/last_month', methods=["GET"])
+def getRecentOrders():
+    # Setup database connection
+    db = MySQL_Database()
+
+    uberlist = []
+
+    # Gets the details of an order from a given order id
+    order_details = db.query(
+        'SELECT o.Order_ID, o.Customer_ID, o.DateTime, o.Status, od.Order_Details_ID, s.Stock_ID FROM orders AS o, order_details AS od, stock AS s, item_details AS id WHERE od.Order_ID = o.Order_ID AND id.Order_Details_ID = od.Order_Details_ID AND id.Stock_ID = s.Stock_ID AND o.DateTime >= DATE_SUB(NOW(), INTERVAL 1 MONTH)',
+        [])
+
+    if order_details:
+        order_id = -1
+
+        for ingredient in order_details:
+
+            if ingredient["Order_ID"] != order_id:
+                if order_id != -1:
+                    print("Appending order")
+                    uberlist.append(jsondict)
+
+                order_id = ingredient["Order_ID"]
+
+                metadata = {}
+
+                for key in ingredient:
+                    metadata[key] = ingredient[key]
+
+                print(metadata)
+
+                jsondict = {"order_details_list": metadata}
+                stockdetails = {}
+
+                itemNumber = ingredient['Order_Details_ID']
+                stockdetails[str(itemNumber)] = []
+                stockdetails[str(itemNumber)].append(ingredient['Stock_ID'])
+                prev = itemNumber
+
+            else:
+                itemNumber = ingredient['Order_Details_ID']
+                if itemNumber != prev:
+                    jsondict["item_details_list"] = stockdetails
+                    stockdetails[str(itemNumber)] = []
+                    stockdetails[str(itemNumber)].append(ingredient['Stock_ID'])
+                    prev = itemNumber
+                else:
+                    stockdetails[str(itemNumber)].append(ingredient['Stock_ID'])
+
+        jsondict["item_details_list"] = stockdetails
+        uberlist.append(jsondict)
+
+        return Response(json.dumps(uberlist))
+
+    else:
+        return Response(json.dumps({'order_details_list': 'None'}))
+
 
 @app.route('/order/list/status/<int:order_status>', methods=["GET"])
 def orderByStatus(order_status):
