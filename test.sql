@@ -30,3 +30,5 @@ SELECT * FROM staff WHERE Staff_Type_ID = 1;
 UPDATE stock SET Stock_Level = Stock_Level + 1 WHERE Stock_ID = 1;
 
 SELECT o.Order_ID, o.Customer_ID, o.DateTime, o.Status, od.Order_Details_ID, s.Stock_ID FROM orders AS o, order_details AS od, stock AS s, item_details AS id WHERE od.Order_ID = o.Order_ID AND id.Order_Details_ID = od.Order_Details_ID AND id.Stock_ID = s.Stock_ID AND o.DateTime >= DATE_SUB(NOW(), INTERVAL 1 MONTH);
+
+UPDATE customer SET PassPin = "1234" WHERE customer.Customer_ID = 1

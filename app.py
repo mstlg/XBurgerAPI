@@ -654,7 +654,25 @@ def savePaymentDetails():
     token = paymentDetails_json["card_token"]
 
     db = MySQL_Database()
-    update = db.update('UPDATE customer(PassPin, Card_Token) VALUES (%s, %s)', [pin, token])
+    updatepin = db.update('UPDATE customer SET PassPin = %s WHERE customer.Customer_ID = %s', [pin, customer_id])
+    updatetoken = db.update('UPDATE customer SET Card_Token = %s WHERE customer.customer_ID = %s', [token, customer_id])
+
+    if updatepin and updatetoken:
+        return Response(json.dumps({'Customer Details': 'Updated'}))
+    else:
+        return Response(json.dumps({'Customer Details': 'Update failed'}))
+
+
+@app.route("/customer/token/<int:user_id>")
+def getToken(user_id):
+    db = MySQL_Database()
+
+    token = db.query('SELECT Card_Token FROM customer WHERE customer.Customer_ID = %s', [user_id])
+
+    if token:
+        return Response(json.dumps(token))
+    else:
+        return Response(json.dumps({'Customer': 'void'}))
 
 if __name__ == '__main__':
     app.run()
