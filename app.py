@@ -331,6 +331,8 @@ def orderByStaff(staff_id):
     else:
         return Response(json.dumps({'order_details_list': 'None'}))
 
+
+# Get order list by status TO DO
 @app.route('/order/list/status/<int:order_status>', methods=["GET"])
 def orderByStatus(order_status):
     # Setup database connection
