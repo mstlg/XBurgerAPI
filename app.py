@@ -644,6 +644,17 @@ def completeOrder(order_id):
     else:
         return Response(json.dumps({'Order Status': 'Update Error'}))
 
+@app.route("/customer/save/payment", methods=["POST"])
+def savePaymentDetails():
+
+    paymentDetails_json = request.get_json(silent=True)
+
+    customer_id = paymentDetails_json["customer_id"]
+    pin = paymentDetails_json["pass_pin"]
+    token = paymentDetails_json["card_token"]
+
+    db = MySQL_Database()
+    update = db.update('UPDATE customer(PassPin, Card_Token) VALUES (%s, %s)', [pin, token])
 
 if __name__ == '__main__':
     app.run()
