@@ -235,7 +235,7 @@ def orderByCustomer(user_id):
     # Setup database connection
     db = MySQL_Database()
 
-    uberlist = []
+    order_list = []
 
     # Gets the details of an order from a given order id
     order_details = db.query(
@@ -243,46 +243,63 @@ def orderByCustomer(user_id):
         [user_id])
 
     if order_details:
+
+        # Initialise order_id to -1 to symbolise that this is the first order being processed
         order_id = -1
 
+        # Loop through each ingredient row in the query result
         for ingredient in order_details:
 
+            # If the order_id is not equal to the previous, then do the following
             if ingredient["Order_ID"] != order_id:
+                # If the order is not the first one being processed, this is a new order, we need to append the previous order to the 'uberlist'
                 if order_id != -1:
                     print("Appending order")
-                    uberlist.append(jsondict)
+                    # Append the items_list to the order object
+                    order_individual["item_details_list"] = stockdetails
+                    # Append the order object to the orders_list
+                    order_list.append(order_individual)
 
+                # After processing the previous order (if required), we process the metadata for the current row
                 order_id = ingredient["Order_ID"]
-
                 metadata = {}
-
                 for key in ingredient:
                     metadata[key] = ingredient[key]
 
-                print(metadata)
+                # Assign the order metadata to the 'order_details_list' json tag
+                order_individual = {"order_details_list": metadata}
 
-                jsondict = {"order_details_list": metadata}
+                # Initialise the ingredients list for this order_item
                 stockdetails = {}
-
+                # Get the item_id for this ingredient and setup
                 itemNumber = ingredient['Order_Details_ID']
+                # Create a dictionary entry for this item_id which is a blank array
                 stockdetails[str(itemNumber)] = []
+                # Append the first ingredient to the item_id entry
                 stockdetails[str(itemNumber)].append(ingredient['Stock_ID'])
+                # Set the previous item_id to be the current item so that subsequent ingredients are added to the correct item
                 prev = itemNumber
 
+            # If the order is equal to the previous, this ingredient forms part of the same order
             else:
+                # Get the item_id to check whether the ingredient is part of the same item
                 itemNumber = ingredient['Order_Details_ID']
+                # If the ingredient is not part of the current item
                 if itemNumber != prev:
-                    jsondict["item_details_list"] = stockdetails
+                    # Add the ingredient to a new item
                     stockdetails[str(itemNumber)] = []
                     stockdetails[str(itemNumber)].append(ingredient['Stock_ID'])
+                    # Set the previous item_id to be the current item so that subsequent ingredients are added to the correct item
                     prev = itemNumber
+                # If the ingredient is part of the current item, append it to the list of stock details for that item
                 else:
                     stockdetails[str(itemNumber)].append(ingredient['Stock_ID'])
 
-        jsondict["item_details_list"] = stockdetails
-        uberlist.append(jsondict)
+        # Once the loop is completed, finish off the final order to be added
+        order_individual["item_details_list"] = stockdetails
+        order_list.append(order_individual)
 
-        return Response(json.dumps(uberlist))
+        return Response(json.dumps(order_list))
 
     else:
         return Response(json.dumps({'order_details_list': 'None'}))
@@ -294,7 +311,7 @@ def orderByStaff(staff_id):
     # Setup database connection
     db = MySQL_Database()
 
-    uberlist = []
+    order_list = []
 
     # Gets the details of an order from a given order id
     order_details = db.query(
@@ -309,7 +326,9 @@ def orderByStaff(staff_id):
             if ingredient["Order_ID"] != order_id:
                 if order_id != -1:
                     print("Appending order")
-                    uberlist.append(jsondict)
+                    order_individual["item_details_list"] = stockdetails
+                    # Append the order object to the orders_list
+                    order_list.append(order_individual)
 
                 order_id = ingredient["Order_ID"]
 
@@ -320,7 +339,7 @@ def orderByStaff(staff_id):
 
                 print(metadata)
 
-                jsondict = {"order_details_list": metadata}
+                order_individual = {"order_details_list": metadata}
                 stockdetails = {}
 
                 itemNumber = ingredient['Order_Details_ID']
@@ -331,17 +350,17 @@ def orderByStaff(staff_id):
             else:
                 itemNumber = ingredient['Order_Details_ID']
                 if itemNumber != prev:
-                    jsondict["item_details_list"] = stockdetails
+                    order_individual["item_details_list"] = stockdetails
                     stockdetails[str(itemNumber)] = []
                     stockdetails[str(itemNumber)].append(ingredient['Stock_ID'])
                     prev = itemNumber
                 else:
                     stockdetails[str(itemNumber)].append(ingredient['Stock_ID'])
 
-        jsondict["item_details_list"] = stockdetails
-        uberlist.append(jsondict)
+        order_individual["item_details_list"] = stockdetails
+        order_list.append(order_individual)
 
-        return Response(json.dumps(uberlist))
+        return Response(json.dumps(order_list))
 
     else:
         return Response(json.dumps({'order_details_list': 'None'}))
@@ -351,7 +370,7 @@ def allOrders():
     # Setup database connection
     db = MySQL_Database()
 
-    uberlist = []
+    order_list = []
 
     # Gets the details of an order from a given order id
     order_details = db.query(
@@ -365,8 +384,9 @@ def allOrders():
 
             if ingredient["Order_ID"] != order_id:
                 if order_id != -1:
-                    print("Appending order")
-                    uberlist.append(jsondict)
+                    order_individual["item_details_list"] = stockdetails
+                    # Append the order object to the orders_list
+                    order_list.append(order_individual)
 
                 order_id = ingredient["Order_ID"]
 
@@ -377,7 +397,7 @@ def allOrders():
 
                 print(metadata)
 
-                jsondict = {"order_details_list": metadata}
+                order_individual = {"order_details_list": metadata}
                 stockdetails = {}
 
                 itemNumber = ingredient['Order_Details_ID']
@@ -388,17 +408,17 @@ def allOrders():
             else:
                 itemNumber = ingredient['Order_Details_ID']
                 if itemNumber != prev:
-                    jsondict["item_details_list"] = stockdetails
+                    order_individual["item_details_list"] = stockdetails
                     stockdetails[str(itemNumber)] = []
                     stockdetails[str(itemNumber)].append(ingredient['Stock_ID'])
                     prev = itemNumber
                 else:
                     stockdetails[str(itemNumber)].append(ingredient['Stock_ID'])
 
-        jsondict["item_details_list"] = stockdetails
-        uberlist.append(jsondict)
+        order_individual["item_details_list"] = stockdetails
+        order_list.append(order_individual)
 
-        return Response(json.dumps(uberlist))
+        return Response(json.dumps(order_list))
 
     else:
         return Response(json.dumps({'order_details_list': 'None'}))
@@ -408,7 +428,7 @@ def getRecentOrders():
     # Setup database connection
     db = MySQL_Database()
 
-    uberlist = []
+    order_list = []
 
     # Gets the details of an order from a given order id
     order_details = db.query(
@@ -423,7 +443,9 @@ def getRecentOrders():
             if ingredient["Order_ID"] != order_id:
                 if order_id != -1:
                     print("Appending order")
-                    uberlist.append(jsondict)
+                    order_individual["item_details_list"] = stockdetails
+                    # Append the order object to the orders_list
+                    order_list.append(order_individual)
 
                 order_id = ingredient["Order_ID"]
 
@@ -434,7 +456,7 @@ def getRecentOrders():
 
                 print(metadata)
 
-                jsondict = {"order_details_list": metadata}
+                order_individual = {"order_details_list": metadata}
                 stockdetails = {}
 
                 itemNumber = ingredient['Order_Details_ID']
@@ -445,17 +467,17 @@ def getRecentOrders():
             else:
                 itemNumber = ingredient['Order_Details_ID']
                 if itemNumber != prev:
-                    jsondict["item_details_list"] = stockdetails
+                    order_individual["item_details_list"] = stockdetails
                     stockdetails[str(itemNumber)] = []
                     stockdetails[str(itemNumber)].append(ingredient['Stock_ID'])
                     prev = itemNumber
                 else:
                     stockdetails[str(itemNumber)].append(ingredient['Stock_ID'])
 
-        jsondict["item_details_list"] = stockdetails
-        uberlist.append(jsondict)
+        order_individual["item_details_list"] = stockdetails
+        order_list.append(order_individual)
 
-        return Response(json.dumps(uberlist))
+        return Response(json.dumps(order_list))
 
     else:
         return Response(json.dumps({'order_details_list': 'None'}))
@@ -470,7 +492,7 @@ def orderByStatus(order_status):
         print("Check for completed orders")
         order_status = -1
 
-    uberlist = []
+    order_list = []
 
     # Gets the details of an order from a given order id
     order_details = db.query(
@@ -485,7 +507,9 @@ def orderByStatus(order_status):
             if ingredient["Order_ID"] != order_id:
                 if order_id != -1:
                     print("Appending order")
-                    uberlist.append(jsondict)
+                    order_individual["item_details_list"] = stockdetails
+                    # Append the order object to the orders_list
+                    order_list.append(order_individual)
 
                 order_id = ingredient["Order_ID"]
 
@@ -496,7 +520,7 @@ def orderByStatus(order_status):
 
                 print(metadata)
 
-                jsondict = {"order_details_list": metadata}
+                order_individual = {"order_details_list": metadata}
                 stockdetails = {}
 
                 itemNumber = ingredient['Order_Details_ID']
@@ -507,17 +531,17 @@ def orderByStatus(order_status):
             else:
                 itemNumber = ingredient['Order_Details_ID']
                 if itemNumber != prev:
-                    jsondict["item_details_list"] = stockdetails
+                    order_individual["item_details_list"] = stockdetails
                     stockdetails[str(itemNumber)] = []
                     stockdetails[str(itemNumber)].append(ingredient['Stock_ID'])
                     prev = itemNumber
                 else:
                     stockdetails[str(itemNumber)].append(ingredient['Stock_ID'])
 
-        jsondict["item_details_list"] = stockdetails
-        uberlist.append(jsondict)
+        order_individual["item_details_list"] = stockdetails
+        order_list.append(order_individual)
 
-        return Response(json.dumps(uberlist))
+        return Response(json.dumps(order_list))
 
     else:
         return Response(json.dumps({'order_details_list': 'None'}))
