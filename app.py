@@ -496,7 +496,7 @@ def orderByStatus(order_status):
 
     # Gets the details of an order from a given order id
     order_details = db.query(
-        'SELECT o.Order_ID, o.Customer_ID, o.DateTime, o.Status, od.Order_Details_ID, s.Stock_ID FROM orders AS o, order_details AS od, stock AS s, item_details AS id WHERE o.status = %s AND od.Order_ID = o.Order_ID AND id.Order_Details_ID = od.Order_Details_ID AND id.Stock_ID = s.Stock_ID',
+        'SELECT o.Order_ID, o.Customer_ID, o.Staff_ID, o.DateTime, o.Status, od.Order_Details_ID, s.Stock_ID FROM orders AS o, order_details AS od, stock AS s, item_details AS id WHERE o.status = %s AND od.Order_ID = o.Order_ID AND id.Order_Details_ID = od.Order_Details_ID AND id.Stock_ID = s.Stock_ID',
         [order_status])
 
     if order_details:
